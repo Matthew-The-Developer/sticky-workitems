@@ -1,0 +1,18 @@
+:host {
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+  "header header"
+  "left content";
+
+  .header {
+    grid-area: header;
+    height: auto;
+  }
+
+  .left {
+    grid-area: left;
+  }
+}

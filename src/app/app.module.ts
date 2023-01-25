@@ -6,17 +6,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { HeaderComponent } from './core/header/header.component';
 import { LeftComponent } from './core/left/left.component';
+import { SharedModule } from './shared/shared.module';
+import { PatientModule } from './patient/patient.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LeftComponent
+    LeftComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule,
+    PatientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

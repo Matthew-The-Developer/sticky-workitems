@@ -12,7 +12,40 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$sticky-workitems-primary: mat.define-palette(mat.$indigo-palette);
+$med-primary: (
+    50 : #e2e5ef,
+    100 : #b6bed7,
+    200 : #8693bc,
+    300 : #5567a1,
+    400 : #30478c,
+    500 : #0c2678,
+    600 : #0a2270,
+    700 : #081c65,
+    800 : #06175b,
+    900 : #030d48,
+    A100 : #7c88ff,
+    A200 : #4959ff,
+    A400 : #162bff,
+    A700 : #0016fc,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$sticky-workitems-primary: mat.define-palette($med-primary);
 $sticky-workitems-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -47,3 +80,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 ::-webkit-scrollbar-thumb {
   background: rgba($color: #000000, $alpha: 0.48); 
 }
+
+@import './styles/button.scss';
+@import './styles/form.scss';

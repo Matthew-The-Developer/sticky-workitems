@@ -1,0 +1,25 @@
+mat-toolbar {
+  max-width: 64px;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+  "actions"
+  "version";
+
+  flex-direction: column;
+
+  padding: 0;
+
+  .actions {
+    grid-area: actions;
+    align-self: start;
+    display: flex;
+    flex-flow: column wrap;
+  }
+
+  .version {
+    grid-area: version;
+    text-align: center;
+  }
+}

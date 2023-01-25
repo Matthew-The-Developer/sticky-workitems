@@ -1,0 +1,18 @@
+button.mat-button.side-action {
+  width: 64px;
+  height: 64px;
+
+  padding: 0;
+
+  span.mat-button-wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+
+    span.label {
+      line-height: normal;
+      font-size: 10px;
+      font-weight: 400;
+    }
+  }
+}

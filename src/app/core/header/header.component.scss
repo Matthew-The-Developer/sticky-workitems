@@ -1,0 +1,41 @@
+mat-toolbar {
+  height: 48px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "logo location actions";
+
+  padding: 0;
+
+  .logo {
+    grid-area: logo;
+    width: 64px;
+    display: flex;
+    flex-flow: column wrap;
+
+    text-align: center;
+
+    .title {
+      font-size: 10px;
+      line-height: 10px;
+    }
+    .subtitle {
+      line-height: 20px;
+      color:#43ccf7;
+    }
+  }
+
+  .location {
+    grid-area: location;
+    justify-self: center;
+  }
+
+  .actions {
+    grid-area: actions;
+    .action {
+      align-self: end;
+      min-height: 48px;
+      min-width: 48px;
+    }
+  }
+
+}

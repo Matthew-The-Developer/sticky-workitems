@@ -25,13 +25,23 @@
           flex-flow: row nowrap;
           align-items: center;
 
+          mat-icon {
+            background-color: rgba($color: #0c2678, $alpha: .12);
+            padding: 0.25rem;
+            margin-right: 0.25rem;
+            border-radius: calc(24px + 0.5rem);
+          }
+
           .day {
-            width: 20px;
-            aspect-ratio: 1 / 1;
+            width: 24px;
+            height: 24px;
+            
+            display: grid;
+            place-content: center;
+            
             border-radius: 50%;
             padding: 0.25rem;
             font-weight: 500;
-            text-align: center;
 
             background-color: rgba(0, 0, 0, .12);
             color: rgba(0, 0, 0, .38);
@@ -75,6 +85,16 @@
           background-color: rgba(0, 0, 0, .12);
           border-radius: calc(20px + 1rem);
           padding: 0.35rem 1.25rem 0.35rem 0.35rem;
+          mat-icon { margin-right: 0.25rem; }
+        }
+
+        .item.chip.safe {
+          background-color: rgba($color: #5cb85c, $alpha: .12);
+          
+          mat-icon {
+            background-color: rgba($color: #5cb85c, $alpha: .24);
+            color: #5cb85c;
+          }
         }
 
         button {

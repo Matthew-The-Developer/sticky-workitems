@@ -1,0 +1,16 @@
+.mat-menu-panel.workitem-menu {
+  max-width: unset;
+  
+  .mat-menu-content {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+
+    .section {
+      .title {
+        width: 100%;
+        text-align: left;
+      }
+    }
+  }
+}

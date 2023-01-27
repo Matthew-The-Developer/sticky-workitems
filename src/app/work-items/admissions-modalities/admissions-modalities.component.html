@@ -4,6 +4,10 @@
   [opened]="opened"
 >
   <ng-container actions>
+    <button (click)="scrollTo()" mat-button>
+      Scroll
+    </button>
+
     <button (click)="toggle()" color="primary" mat-button>
       <mat-icon>add</mat-icon> Admission
     </button>

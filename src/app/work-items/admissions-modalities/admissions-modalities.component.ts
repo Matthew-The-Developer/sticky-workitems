@@ -1,4 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { MatCard } from '@angular/material/card';
+import { WorkitemWrapperComponent } from 'src/app/shared/workitem-wrapper/workitem-wrapper.component';
 
 @Component({
   selector: 'app-admissions-modalities',
@@ -7,6 +9,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class AdmissionsModalitiesComponent implements OnInit {
   @Output() onClose: EventEmitter<AdmissionsModalitiesComponent> = new EventEmitter<AdmissionsModalitiesComponent>();
+  @ViewChild(WorkitemWrapperComponent, {read: ElementRef}) wrapper!: ElementRef<HTMLElement>;
 
   title = "Admissions";
   opened: boolean = false;
@@ -22,5 +25,9 @@ export class AdmissionsModalitiesComponent implements OnInit {
 
   close(): void {
 
+  }
+
+  scrollTo(): void {
+    this.wrapper.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 }

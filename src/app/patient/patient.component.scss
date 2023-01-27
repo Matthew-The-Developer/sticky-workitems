@@ -1,8 +1,13 @@
 :host {
-  display: block;
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 1rem;
   padding: 0 1rem 1rem;
 
   mat-card.patient {
+    position: sticky;
+    top: 0px;
+    z-index: 1;
     border-radius: 0 0 4px 4px;
 
     mat-card-header {
@@ -95,11 +100,6 @@
             background-color: rgba($color: #5cb85c, $alpha: .24);
             color: #5cb85c;
           }
-        }
-
-        button {
-          min-width: 36px;
-          padding: 0;
         }
       }
     }

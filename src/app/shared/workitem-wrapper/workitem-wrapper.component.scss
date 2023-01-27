@@ -1,0 +1,29 @@
+mat-card {
+  padding: 0;
+
+  mat-card-title-group {
+    position: sticky;
+    top: 108px;
+
+    padding: 0.5rem 1rem 0.5rem;
+    border-radius: 4px;
+
+    background-color:antiquewhite;
+
+    mat-card-title {
+      font-size: 20px;
+      font-weight: 500;
+      margin: 0;
+    }
+  }
+
+  mat-card-content {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+
+    .content-section {
+      padding: 1rem;
+    }
+  }
+}

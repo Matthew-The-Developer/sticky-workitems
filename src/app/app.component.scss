@@ -18,6 +18,7 @@
   
   .content {
     grid-area: content;
+    overflow: overlay;
     background-color: #d0d4f4;
   }
 }

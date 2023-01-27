@@ -1,0 +1,23 @@
+<mat-card class="work-item">
+  <mat-card-title-group class="center-title">
+    <mat-card-title>{{ title }}</mat-card-title>
+
+    <span spacer></span>
+
+    <ng-content select="[actions]"></ng-content>
+
+    <button mat-button color="warn" class="square">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-title-group>
+
+  <mat-card-content>
+    <div class="content-section">
+      <ng-content select="[left]"></ng-content>
+    </div>
+
+    <div *ngIf="opened" class="content-section">
+      <ng-content select="[right]"></ng-content>
+    </div>
+  </mat-card-content>
+</mat-card>

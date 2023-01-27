@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material.module';
 import { SpacerDirective } from './directives/spacer.directive';
 import { CompactDirective } from './directives/compact.directive';
+import { WorkitemWrapperComponent } from './workitem-wrapper/workitem-wrapper.component';
 
 @NgModule({
   declarations: [
     SpacerDirective,
     CompactDirective,
+    WorkitemWrapperComponent,
   ],
   imports: [
     CommonModule,
@@ -16,6 +18,7 @@ import { CompactDirective } from './directives/compact.directive';
   exports: [
     SpacerDirective,
     CompactDirective,
+    WorkitemWrapperComponent
   ],
   providers: [
     SpacerDirective,

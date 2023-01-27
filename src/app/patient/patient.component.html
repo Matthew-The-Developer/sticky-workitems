@@ -47,11 +47,11 @@
       </div>
 
       <div>
-        <button mat-button>
+        <button mat-button class="square">
           <mat-icon>expand_more</mat-icon>
         </button>
   
-        <button mat-button color="warn">
+        <button mat-button color="warn" class="square">
           <mat-icon>close</mat-icon>
         </button>
       </div>
@@ -73,7 +73,13 @@
     >
       <div *ngFor="let section of demographics" class="section">
         <button mat-button color="primary" class="title">{{ section.title }}</button>
-        <button *ngFor="let workitem of section.workitems" mat-menu-item>{{ workitem.label }}</button>
+        <button 
+          *ngFor="let workitem of section.workitems"
+          (click)="createWorkItem(workitem)"
+          mat-menu-item
+        >
+          {{ workitem.label }}
+        </button>
       </div>
     </mat-menu>
 
@@ -175,3 +181,5 @@
     </button>
   </mat-card-actions>
 </mat-card>
+
+<ng-template #workItems></ng-template>

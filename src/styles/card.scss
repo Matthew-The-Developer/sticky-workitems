@@ -1,0 +1,9 @@
+mat-card-title-group.center-title {
+  div {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+
+    mat-card-title {}
+  }
+}

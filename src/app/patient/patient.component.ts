@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MenuSection } from '../models/menu-section.model';
+import { WorkItem } from '../models/work-item.model';
+import { AdmissionsModalitiesComponent } from '../work-items/admissions-modalities/admissions-modalities.component';
 
 @Component({
   selector: 'app-patient',
@@ -7,11 +9,13 @@ import { MenuSection } from '../models/menu-section.model';
   styleUrls: ['./patient.component.scss']
 })
 export class PatientComponent implements OnInit {
+  @ViewChild('workItems', {read: ViewContainerRef}) container!: ViewContainerRef;
+
   demographics: MenuSection[] = [
     {
       title: 'Workflows',
       workitems: [
-        { label: 'Admissions/Modalities' },
+        { label: 'Admissions/Modalities', component: AdmissionsModalitiesComponent },
         { label: 'Background Information' },
         { label: 'Employment History' },
         { label: 'External Identifiers' },
@@ -106,8 +110,19 @@ export class PatientComponent implements OnInit {
     }
   ];
 
+  workitems: Map<string, ComponentRef<unknown>> = new Map<string, ComponentRef<unknown>>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  createWorkItem(workItem: WorkItem): void {
+    if (workItem.component) {
+      this.workitems.set(workItem.label, this.container.createComponent(workItem.component));
+    }
+  }
+
+  destoryWorkItem(title: string): void {
   }
 }

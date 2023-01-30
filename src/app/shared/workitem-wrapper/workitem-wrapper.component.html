@@ -6,7 +6,7 @@
 
     <ng-content select="[actions]"></ng-content>
 
-    <button mat-button color="warn" class="square">
+    <button (click)="close()" color="warn" class="square" mat-button>
       <mat-icon>close</mat-icon>
     </button>
   </mat-card-title-group>

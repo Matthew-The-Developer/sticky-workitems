@@ -59,126 +59,21 @@
   </mat-card-header>
 
   <mat-card-actions>
-    <button 
-      #demographicsTrigger="matMenuTrigger"
-      [matMenuTriggerFor]="demographicsMenu"
-      mat-button
-    >
-      Demographics <mat-icon>expand_more</mat-icon>
-    </button>
+    <ng-container *ngIf="menus$ | async as menus; else menusLoading">
+      <ng-container *ngFor="let menu of menus">
+        <app-menu (onCreate)="createWorkItem($event)" [menuInfo]="menu"></app-menu>
+      </ng-container>
 
-    <mat-menu
-      #demographicsMenu="matMenu"
-      class="workitem-menu"
-    >
-      <div *ngFor="let section of demographics" class="section">
-        <button mat-button color="primary" class="title">{{ section.title }}</button>
-        <button 
-          *ngFor="let workitem of section.workitems"
-          (click)="createWorkItem(workitem)"
-          mat-menu-item
-        >
-          {{ workitem.label }}
-        </button>
-      </div>
-    </mat-menu>
+      <span spacer></span>
 
-    <button
-      #clinicalInformationTrigger="matMenuTrigger"
-      [matMenuTriggerFor]="clinicalInformationMenu"
-      mat-button 
-    >
-      Clinical Information <mat-icon>expand_more</mat-icon>
-    </button>
+      <button mat-button disabled color="warn">
+        Close Work Items <mat-icon>close</mat-icon>
+      </button>
+    </ng-container>
 
-    <mat-menu 
-      #clinicalInformationMenu="matMenu"
-      class="workitem-menu"
-    >
-      <div *ngFor="let section of clinicalInformation" class="section">
-        <button mat-button color="primary" class="title">{{ section.title }}</button>
-        <button *ngFor="let workitem of section.workitems" mat-menu-item>{{ workitem.label }}</button>
-      </div>
-    </mat-menu>
+    <ng-template #menusLoading>
 
-    <button
-      #ordersTrigger="matMenuTrigger"
-      [matMenuTriggerFor]="ordersMenu"
-      mat-button
-    >
-      Orders <mat-icon>expand_more</mat-icon>
-    </button>
-
-    <mat-menu
-      #ordersMenu="matMenu"
-      class="workitem-menu"
-    >
-      <div *ngFor="let section of orders" class="section">
-        <button mat-button color="primary" class="title">{{ section.title }}</button>
-        <button *ngFor="let workitem of section.workitems" mat-menu-item>{{ workitem.label }}</button>
-      </div>
-    </mat-menu>
-
-    <button
-      #docmentsTrigger="matMenuTrigger"
-      [matMenuTriggerFor]="docmentsMenu"
-      mat-button
-    >
-      Documents <mat-icon>expand_more</mat-icon>
-    </button>
-
-    <mat-menu
-      #docmentsMenu="matMenu"
-      class="workitem-menu"
-    >
-      <div *ngFor="let section of documents" class="section">
-        <button mat-button color="primary" class="title">{{ section.title }}</button>
-        <button *ngFor="let workitem of section.workitems" mat-menu-item>{{ workitem.label }}</button>
-      </div>
-    </mat-menu>
-
-
-    <button
-      #workflowsTrigger="matMenuTrigger"
-      [matMenuTriggerFor]="workflowsMenu"
-      mat-button
-    >
-      Workflows <mat-icon>expand_more</mat-icon>
-    </button>
-
-    <mat-menu
-      #workflowsMenu="matMenu"
-      class="workitem-menu"
-    >
-      <div *ngFor="let section of workflows" class="section">
-        <button mat-button color="primary" class="title">{{ section.title }}</button>
-        <button *ngFor="let workitem of section.workitems" mat-menu-item>{{ workitem.label }}</button>
-      </div>
-    </mat-menu>
-
-    <button
-      #resourcesTrigger="matMenuTrigger"
-      [matMenuTriggerFor]="resourcesMenu"
-      mat-button
-    >
-      Resources <mat-icon>expand_more</mat-icon>
-    </button>
-
-    <mat-menu
-      #resourcesMenu="matMenu"
-      class="workitem-menu"
-    >
-      <div *ngFor="let section of resources" class="section">
-        <button mat-button color="primary" class="title">{{ section.title }}</button>
-        <button *ngFor="let workitem of section.workitems" mat-menu-item>{{ workitem.label }}</button>
-      </div>
-    </mat-menu>
-
-    <span spacer></span>
-
-    <button mat-button disabled color="warn">
-      Close Work Items <mat-icon>close</mat-icon>
-    </button>
+    </ng-template>
   </mat-card-actions>
 </mat-card>
 

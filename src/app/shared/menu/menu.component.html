@@ -1,0 +1,19 @@
+<button [matMenuTriggerFor]="menu" mat-button>
+  {{ menuInfo.title }} <mat-icon>expand_more</mat-icon>
+</button>
+
+<mat-menu
+  #menu="matMenu"
+  class="workitem-menu"
+>
+  <div *ngFor="let section of menuInfo.sections" class="section">
+    <button mat-button color="primary" class="title">{{ section.title }}</button>
+    <button 
+      *ngFor="let workitem of section.workitems"
+      (click)="create(workitem)"
+      mat-menu-item
+    >
+      {{ workitem.label }}
+    </button>
+  </div>
+</mat-menu>

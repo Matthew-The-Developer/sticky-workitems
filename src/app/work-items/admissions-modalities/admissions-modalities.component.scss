@@ -1,0 +1,59 @@
+mat-card.admission-modality {
+  border: 1px solid rgba($color: #000000, $alpha: 0.12);
+
+  mat-card-title-group {
+    mat-card-title {
+      font-size: 18px;
+      margin-bottom: 0.125rem;
+    }
+
+    mat-card-subtitle {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      color: rgba($color: #000000, $alpha: 1.0);
+
+      span.reason {
+        font-weight: 500;
+      }
+    }
+
+    .actions {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      mat-chip-list {
+        height: auto;
+        margin-right: 0.5rem;
+
+        mat-chip {
+          min-height: 26px;
+          padding: 0.25rem 0.5rem;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  mat-card-content {
+    mat-accordion {
+      mat-expansion-panel {
+        mat-panel-title {
+          min-width: 100px;
+          flex-grow: 0;
+          align-items: center;
+        }
+
+        mat-panel-description {
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+}
+
+mat-card.admission-modality + mat-card.admission-modality {
+  margin-top: 0.5rem;
+}

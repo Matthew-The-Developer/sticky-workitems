@@ -1,0 +1,38 @@
+<app-workitem-wrapper
+  (onClose)="close()"
+  [title]="title"
+  [opened]="opened"
+>
+  <ng-container actions>
+    <button (click)="toggle()" color="primary" mat-button>
+      <mat-icon>edit</mat-icon> {{ title }}
+    </button>
+  </ng-container>
+
+  <ng-container left>
+    <div class="information">
+      <div class="item chip">
+        <mat-icon color="primary">favorite</mat-icon>
+        
+        <div class="title">
+          <span class="label">Marital Status</span>
+          <span class="value">Single</span>
+        </div>
+      </div>
+
+      <div class="item chip">
+        <mat-icon color="primary">church</mat-icon>
+        
+        <div class="title">
+          <span class="label">Religion</span>
+          <span class="value"></span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container right>
+    
+  </ng-container>
+
+</app-workitem-wrapper>

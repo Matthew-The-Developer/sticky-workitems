@@ -71,14 +71,14 @@
             background-position: center center;
           }
 
-          .title {
+          .text {
             display: flex;
             flex-flow: column wrap;
-            .name {
+            .value {
               font-weight: 500;
               line-height: 16px;
             }
-            .position {
+            .label {
               color: rgba(0, 0, 0, .38);
               font-weight: 500;
               font-size: 12px;
@@ -93,9 +93,7 @@
           mat-icon { margin-right: 0.25rem; }
         }
 
-        .item.chip.safe {
-          background-color: rgba($color: #5cb85c, $alpha: .12);
-          
+        .item.safe {
           mat-icon {
             background-color: rgba($color: #5cb85c, $alpha: .24); 
             color: #5cb85c;

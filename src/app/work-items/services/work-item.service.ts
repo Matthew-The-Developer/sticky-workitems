@@ -10,7 +10,7 @@ export class WorkItemService {
   constructor() { }
 
   createWorkItem(workItem: WorkItem, container: ViewContainerRef): void {
-    if (workItem.component && !this.workitems.has(workItem.label)) {
+    if (workItem.component) {
       this.workitems.set(workItem.label, container.createComponent(workItem.component));
     }
   }

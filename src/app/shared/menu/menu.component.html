@@ -7,10 +7,19 @@
   class="workitem-menu"
 >
   <div *ngFor="let section of menuInfo.sections" class="section">
-    <button mat-button color="primary" class="title">{{ section.title }}</button>
+    <button
+      (click)="createSection(section)"
+      color="primary"
+      class="title"
+      mat-button
+    >
+      {{ section.title }}
+    </button>
+    
     <button 
       *ngFor="let workitem of section.workitems"
       (click)="create(workitem)"
+      [disabled]="!workitem.component"
       mat-menu-item
     >
       {{ workitem.label }}

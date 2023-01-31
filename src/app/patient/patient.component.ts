@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoaderTemplate } from '../models/loader-template.enum';
-import { Menu, WorkItem } from '../models/menu.model';
+import { Menu, MenuSection, WorkItem } from '../models/menu.model';
 import { WorkItemService } from '../work-items/services/work-item.service';
 import { MenuService } from './services/menu.service';
 
@@ -27,8 +27,9 @@ export class PatientComponent implements OnInit {
   }
 
   get menus$(): Observable<Menu[] | null> { return this._menus.asObservable() }
+  get hasWorkItems$(): Observable<boolean> { return this.workItemService.hasWorkItems$ }
 
-  createWorkItem(workItem: WorkItem): void {
-    this.workItemService.createWorkItem(workItem, this.container);
-  }
+  createWorkItems(section: MenuSection): void { this.workItemService.createWorkItems(section, this.container) }
+  createWorkItem(workItem: WorkItem): void { this.workItemService.createWorkItem(workItem, this.container) }
+  deleteWorkItems(): void { this.workItemService.deleteWorkItems() }
 }

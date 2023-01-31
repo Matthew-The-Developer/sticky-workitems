@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Menu, WorkItem } from 'src/app/models/menu.model';
+import { Menu, MenuSection, WorkItem } from 'src/app/models/menu.model';
 
 @Component({
   selector: 'app-menu',
@@ -8,14 +8,12 @@ import { Menu, WorkItem } from 'src/app/models/menu.model';
 })
 export class MenuComponent implements OnInit {
   @Input() menuInfo!: Menu;
+  @Output() onSectionCreate: EventEmitter<MenuSection> = new EventEmitter<MenuSection>();
   @Output() onCreate: EventEmitter<WorkItem> = new EventEmitter<WorkItem>();
   
   constructor() { }
+  ngOnInit(): void { }
 
-  ngOnInit(): void {
-  }
-
-  create(workItem: WorkItem): void {
-    this.onCreate.emit(workItem);
-  }
+  createSection(section: MenuSection): void { this.onSectionCreate.emit(section) }
+  create(workItem: WorkItem): void { this.onCreate.emit(workItem) }
 }

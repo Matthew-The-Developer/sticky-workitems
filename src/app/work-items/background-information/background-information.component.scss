@@ -1,11 +1,8 @@
 .information {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
+  display: grid;
+  grid-auto-flow: column;
 
   .item {
-    justify-self: start;
-
     display: flex;
     flex-flow: row nowrap;
     align-items: center;

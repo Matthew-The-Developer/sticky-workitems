@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { BackgroundInformation } from 'src/app/models/background-information.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { BackgroundInformation, Citizenship, Language, Religion } from 'src/app/models/background-information.model';
 import { WorkItem } from 'src/app/models/menu.model';
 import { WorkitemWrapperComponent } from 'src/app/shared/workitem-wrapper/workitem-wrapper.component';
 import { BackgroundInformationService } from '../services/background-information.service';
@@ -20,6 +20,10 @@ export class BackgroundInformationComponent implements OnInit {
   workItem: WorkItem = {
     label: 'Background Information'
   };
+
+  Religion = Religion;
+  Language = Language;
+  Citizenship = Citizenship;
   
   constructor(
     private backgroundInformationService: BackgroundInformationService,
@@ -32,6 +36,7 @@ export class BackgroundInformationComponent implements OnInit {
     this.backgroundInformationService.getBackgroundInformation().subscribe((backgroundInformation: BackgroundInformation) => this._backgroundInformation.next(backgroundInformation));
   }
 
+  get backgroundInformation$(): Observable<BackgroundInformation | null> { return this._backgroundInformation.asObservable() }
   get title(): string { return this.workItem.label }
 
   toggle(): void {

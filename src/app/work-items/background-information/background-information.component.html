@@ -10,25 +10,67 @@
   </ng-container>
 
   <ng-container left>
-    <div class="information">
-      <div class="item">
-        <mat-icon color="primary">favorite</mat-icon>
-        
-        <div class="title">
-          <span class="label">Marital Status</span>
-          <span class="value">Single</span>
+    <ng-container *ngIf="backgroundInformation$ | async as backgroundInformation; else backgroundInformationLoading">
+      <div class="information">
+        <div class="item">
+          <mat-icon color="primary">favorite</mat-icon>
+          
+          <div class="title">
+            <span class="label">Marital Status</span>
+            <span class="value">{{ backgroundInformation.martialStatus }}</span>
+          </div>
+        </div>
+  
+        <div class="item">
+          <mat-icon color="primary">church</mat-icon>
+          
+          <div class="title">
+            <span class="label">Religion</span>
+            <span class="value">{{ backgroundInformation.religion ? backgroundInformation.religion : Religion.NotSpecified }}</span>
+          </div>
+        </div>
+  
+        <div class="item">
+          <mat-icon color="primary">language</mat-icon>
+          
+          <div class="title">
+            <span class="label">Primary Langauge</span>
+            <span class="value">{{ backgroundInformation.language ? backgroundInformation.language : Language.NotSpecified }}</span>
+          </div>
+        </div>
+  
+        <div class="item">
+          <mat-icon color="primary">badge</mat-icon>
+          
+          <div class="title">
+            <span class="label">Citizenship</span>
+            <span class="value">{{ backgroundInformation.citizenship ? backgroundInformation.citizenship : Citizenship.NotSpecified }}</span>
+          </div>
+        </div>
+  
+        <div class="item">
+          <mat-icon color="primary">accessibility_new</mat-icon>
+          
+          <div class="title">
+            <span class="label">Ethnicity</span>
+            <span class="value">{{ backgroundInformation.ethnicity }}</span>
+          </div>
+        </div>
+  
+        <div class="item">
+          <mat-icon color="primary">accessibility_new</mat-icon>
+          
+          <div class="title">
+            <span class="label">Race</span>
+            <span class="value">{{ backgroundInformation.race }}</span>
+          </div>
         </div>
       </div>
+    </ng-container>
 
-      <div class="item">
-        <mat-icon color="primary">church</mat-icon>
-        
-        <div class="title">
-          <span class="label">Religion</span>
-          <span class="value"></span>
-        </div>
-      </div>
-    </div>
+    <ng-template #backgroundInformationLoading>
+
+    </ng-template>
   </ng-container>
 
   <ng-container right>

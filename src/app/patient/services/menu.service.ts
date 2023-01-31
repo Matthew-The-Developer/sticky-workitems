@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
 import { Menu } from 'src/app/models/menu.model';
+import { AddressesComponent } from 'src/app/work-items/addresses/addresses.component';
 import { AdmissionsModalitiesComponent } from 'src/app/work-items/admissions-modalities/admissions-modalities.component';
 import { BackgroundInformationComponent } from 'src/app/work-items/background-information/background-information.component';
 
@@ -38,7 +39,7 @@ export class MenuService {
             title: 'Contact Information',
             workitems: [
               { label: 'Additional Contacts' },
-              { label: 'Addresses' },
+              { label: 'Addresses', component: AddressesComponent },
               { label: 'Phones' },
               { label: 'Email Addresses' },
             ]
@@ -100,7 +101,7 @@ export class MenuService {
         ]
       },
       {
-        title: 'resources',
+        title: 'Resources',
         sections: [
           {
             title: 'Coordination of Benefits',
@@ -123,6 +124,6 @@ export class MenuService {
           }
         ]
       }
-    ]).pipe(delay(Math.floor(Math.random() * (10000 - 3000 + 1) + 3000)));
+    ]).pipe(delay(Math.floor(Math.random() * (5000 - 3000 + 1) + 3000)));
   }
 }

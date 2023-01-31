@@ -4,13 +4,15 @@ import { AdmissionsModalitiesComponent } from './admissions-modalities/admission
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material.module';
 import { BackgroundInformationComponent } from './background-information/background-information.component';
+import { AddressesComponent } from './addresses/addresses.component';
 
 
 
 @NgModule({
   declarations: [
     AdmissionsModalitiesComponent,
-    BackgroundInformationComponent
+    BackgroundInformationComponent,
+    AddressesComponent
   ],
   imports: [
     CommonModule,

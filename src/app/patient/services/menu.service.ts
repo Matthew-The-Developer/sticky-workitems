@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { Menu } from 'src/app/models/menu.model';
 import { AdmissionsModalitiesComponent } from 'src/app/work-items/admissions-modalities/admissions-modalities.component';
 import { BackgroundInformationComponent } from 'src/app/work-items/background-information/background-information.component';
@@ -123,6 +123,6 @@ export class MenuService {
           }
         ]
       }
-    ]);
+    ]).pipe(delay(Math.floor(Math.random() * (10000 - 3000 + 1) + 3000)));
   }
 }

@@ -1,1 +1,44 @@
-<p>loader-template works!</p>
+<ng-container [ngSwitch]="template">
+  <ng-container *ngSwitchCase="LoaderTemplate.Menu">
+    <div class="menu">
+      <app-loader [theme]="{
+        width: '7%',
+        height: '36px'
+      }"></app-loader>
+  
+      <app-loader [theme]="{
+        width: '7%',
+        height: '36px'
+      }"></app-loader>
+  
+      <app-loader [theme]="{
+        width: '7%',
+        height: '36px'
+      }"></app-loader>
+  
+      <app-loader [theme]="{
+        width: '7%',
+        height: '36px'
+      }"></app-loader>
+
+      <app-loader [theme]="{
+        width: '7%',
+        height: '36px'
+      }"></app-loader>
+
+      <app-loader [theme]="{
+        width: '7%',
+        height: '36px'
+      }"></app-loader>
+
+      <span spacer></span>
+
+      <app-loader [theme]="{
+        width: '7%',
+        height: '36px'
+      }"></app-loader>
+    </div>
+  </ng-container>
+
+  <ng-container *NgSwitchDefault></ng-container>
+</ng-container>

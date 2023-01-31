@@ -1,0 +1,31 @@
+:host {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  div.row {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: auto;
+  }
+
+  div.menu {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+
+    app-loader + app-loader {
+      margin-left: 1rem;
+    }
+  }
+
+  div.columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

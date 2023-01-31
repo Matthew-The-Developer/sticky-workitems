@@ -10,26 +10,28 @@ import { LoaderTemplateComponent } from './loader-template/loader-template.compo
 
 @NgModule({
   declarations: [
-    SpacerDirective,
-    CompactDirective,
-    WorkitemWrapperComponent,
     MenuComponent,
     LoaderComponent,
     LoaderTemplateComponent,
+    WorkitemWrapperComponent,
+    CompactDirective,
+    SpacerDirective,
   ],
   imports: [
     CommonModule,
     MaterialModule,
   ],
   exports: [
-    SpacerDirective,
-    CompactDirective,
     MenuComponent,
+    LoaderComponent,
+    LoaderTemplateComponent,
     WorkitemWrapperComponent,
+    CompactDirective,
+    SpacerDirective,
   ],
   providers: [
-    SpacerDirective,
     CompactDirective,
+    SpacerDirective,
   ],
 })
 export class SharedModule { }

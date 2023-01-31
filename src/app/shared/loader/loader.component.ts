@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-loader',
@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent implements OnInit {
-
-  constructor() { }
+  @Input() theme: any;
+  @HostBinding('style') hostStyle: any;
 
   ngOnInit(): void {
+    this.hostStyle = this.theme;
   }
-
 }

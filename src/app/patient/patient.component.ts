@@ -1,7 +1,7 @@
-import { Component, ComponentFactoryResolver, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Menu, MenuSection, WorkItem } from '../models/menu.model';
-import { AdmissionsModalitiesComponent } from '../work-items/admissions-modalities/admissions-modalities.component';
+import { LoaderTemplate } from '../models/loader-template.enum';
+import { Menu, WorkItem } from '../models/menu.model';
 import { WorkItemService } from '../work-items/services/work-item.service';
 import { MenuService } from './services/menu.service';
 
@@ -14,6 +14,8 @@ export class PatientComponent implements OnInit {
   @ViewChild('workItems', {read: ViewContainerRef}) container!: ViewContainerRef;
 
   _menus: BehaviorSubject<Menu[] | null> = new BehaviorSubject<Menu[] | null>(null);
+
+  LoaderTemplate = LoaderTemplate;
 
   constructor(
     private menuService: MenuService,

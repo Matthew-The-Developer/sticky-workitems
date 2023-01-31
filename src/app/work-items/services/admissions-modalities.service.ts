@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, delay } from 'rxjs';
 import { AdmissionModality, AdmissionReason, DischargeReason, LocationType, ModalityType } from 'src/app/models/admission-modality.model';
 
 @Injectable({
@@ -57,6 +57,6 @@ export class AdmissionsModalitiesService {
           }
         ],
       }
-    ]);
+    ]).pipe(delay(Math.floor(Math.random() * (10000 - 3000 + 1) + 3000)));
   }
 }

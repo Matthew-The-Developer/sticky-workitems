@@ -1,6 +1,7 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AdmissionModality } from 'src/app/models/admission-modality.model';
+import { LoaderTemplate } from 'src/app/models/loader-template.enum';
 import { WorkItem } from 'src/app/models/menu.model';
 import { WorkitemWrapperComponent } from 'src/app/shared/workitem-wrapper/workitem-wrapper.component';
 import { AdmissionsModalitiesService } from '../services/admissions-modalities.service';
@@ -20,6 +21,8 @@ export class AdmissionsModalitiesComponent implements OnInit {
   workItem: WorkItem = {
     label: 'Admissions/Modalities'
   };
+
+  LoaderTemplate = LoaderTemplate;
 
   constructor(
     private admissionsModalitiesService: AdmissionsModalitiesService,

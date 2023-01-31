@@ -43,7 +43,9 @@
                 <mat-panel-title>Modalities</mat-panel-title>
                 
                 <mat-panel-description>
-                  <span>{{ admissionModality.modalities[0].type }} - {{ admissionModality.modalities[0].startDate | date:'MM/dd/yyyy' }}</span>
+                  <div>
+                    <span class="type-name">{{ admissionModality.modalities[0].type }}</span> - <span>{{ admissionModality.modalities[0].startDate | date:'MM/dd/yyyy' }}</span>
+                  </div>
                   <button mat-button color="primary">
                     <mat-icon>add</mat-icon> Modality
                   </button>
@@ -56,7 +58,9 @@
                 <mat-panel-title>Nephrologists</mat-panel-title>
                 
                 <mat-panel-description>
-                  <span>{{ admissionModality.nephrologists[0].name }} - {{ admissionModality.nephrologists[0].startDate | date:'MM/dd/yyyy' }}</span>
+                  <div>
+                    <span class="type-name">{{ admissionModality.nephrologists[0].name }}</span> - <span>{{ admissionModality.nephrologists[0].startDate | date:'MM/dd/yyyy' }}</span>
+                  </div>
                   <button mat-button color="primary">
                     <mat-icon>add</mat-icon> Nephrologist
                   </button>
@@ -70,7 +74,7 @@
     </ng-container>
 
     <ng-template #loadingAdmissionsModalities>
-
+      <app-loader-template [template]="LoaderTemplate.AdmissionModalities"></app-loader-template>
     </ng-template>
   </ng-container>
   

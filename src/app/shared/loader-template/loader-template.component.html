@@ -40,5 +40,18 @@
     </div>
   </ng-container>
 
+  <ng-container *ngSwitchCase="LoaderTemplate.AdmissionModalities">
+    <app-loader [theme]="{
+      width: '100%',
+      height: '80px',
+      'margin-bottom': '0.5rem'
+    }"></app-loader>
+
+    <app-loader [theme]="{
+      width: '100%',
+      height: '80px'
+    }"></app-loader>
+  </ng-container>
+
   <ng-container *NgSwitchDefault></ng-container>
 </ng-container>

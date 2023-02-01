@@ -8,13 +8,13 @@ import { LoaderTemplate } from 'src/app/models/loader-template.enum';
 })
 export class LoaderTemplateComponent implements OnInit {
   @Input() template: LoaderTemplate = LoaderTemplate.Menu;
-  @Input() rowCount: number = 1;
+  @Input() count: number = 1;
 
   LoaderTemplate = LoaderTemplate;
-  rows: number[] = [];
+  items: number[] = [];
 
   constructor() { }
   ngOnInit(): void {
-    this.rows = Array(this.rowCount).fill(0).map((x, i)=> i);
+    this.items = Array(this.count).fill(0).map((x, i)=> i);
   }
 }

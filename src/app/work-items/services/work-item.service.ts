@@ -17,7 +17,7 @@ export class WorkItemService {
   }
 
   createWorkItem(workItem: WorkItem, container: ViewContainerRef): void {
-    if (workItem.component && !this._workitems.value.has(workItem.label)) {
+    if (workItem.component) {
       this._workitems.next(this._workitems.value.set(workItem.label, container.createComponent(workItem.component)));
     }
   }

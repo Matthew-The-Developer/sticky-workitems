@@ -31,5 +31,5 @@ export class PatientComponent implements OnInit {
 
   createWorkItems(section: MenuSection): void { this.workItemService.createWorkItems(section, this.container) }
   createWorkItem(workItem: WorkItem): void { this.workItemService.createWorkItem(workItem, this.container) }
-  deleteWorkItems(): void { this.workItemService.deleteWorkItems() }
+  deleteWorkItems(): void { this.workItemService.deleteWorkItems(this.container) }
 }

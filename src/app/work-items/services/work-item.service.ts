@@ -22,8 +22,9 @@ export class WorkItemService {
     }
   }
 
-  deleteWorkItems(): void {
+  deleteWorkItems(container: ViewContainerRef): void {
     this._workitems.value.forEach((value: ComponentRef<unknown>, label: string) => this.deleteWorkItem({ label }));
+    container.clear();
   }
 
   deleteWorkItem({ label }: WorkItem): void {

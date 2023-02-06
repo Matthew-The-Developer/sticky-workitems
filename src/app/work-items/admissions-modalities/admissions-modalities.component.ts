@@ -16,7 +16,9 @@ export class AdmissionsModalitiesComponent implements OnInit {
   @ViewChild(WorkitemWrapperComponent, {read: ElementRef}) wrapper!: ElementRef<HTMLElement>;
 
   _admissionsModalities: BehaviorSubject<AdmissionModality[] | null> = new BehaviorSubject<AdmissionModality[] | null>(null);
+  _selected: BehaviorSubject<AdmissionModality | null> = new BehaviorSubject<AdmissionModality | null>(null);
 
+  error: string | null = null;
   opened: boolean = false;
   workItem: WorkItem = {
     label: 'Admissions/Modalities'
@@ -30,24 +32,52 @@ export class AdmissionsModalitiesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._admissionsModalities = new BehaviorSubject<AdmissionModality[] | null>(null);
-
-    this.admissionsModalitiesService.getAdmissionsModalities().subscribe((admissionsModalities: AdmissionModality[]) => this._admissionsModalities.next(admissionsModalities));
+    this.load();
   }
 
   get admissionsModalities$(): Observable<AdmissionModality[] | null> { return this._admissionsModalities.asObservable() }
+  get selected$(): Observable<AdmissionModality | null> { return this._selected.asObservable() }
   get title(): string { return this.workItem.label }
 
-  toggle(): void {
+  add(): void {
     this.wrapper.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    this.opened = !this.opened;
+    this._selected.next(null);
+    this.opened = true;
+  }
+
+  edit(admissionModality: AdmissionModality): void {
+    this.wrapper.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    this._selected.next(admissionModality);
+    this.opened = true;
+  }
+
+  cancel(): void {
+    this.opened = false;
+    this._selected.next(null);  
+    this.wrapper.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   close(): void {
     this.workItemService.deleteWorkItem(this.workItem);
   }
 
+  retry(): void {
+    this.error = null;
+    this.load();
+  }
+
+  isSelected(admissionModality: AdmissionModality): boolean { return this._selected.value === admissionModality }
   hasModalitiesOrNephrologists(admissionModality: AdmissionModality): boolean { return this.hasModalities(admissionModality) || this.hasNephrologists(admissionModality) }
   hasModalities(admissionModality: AdmissionModality): boolean { return admissionModality.modalities.length > 0 }
   hasNephrologists(admissionModality: AdmissionModality): boolean { return admissionModality.nephrologists.length > 0 }
+
+  private load(): void {
+    this._admissionsModalities = new BehaviorSubject<AdmissionModality[] | null>(null);
+    this._selected = new BehaviorSubject<AdmissionModality | null>(null);
+
+    this.admissionsModalitiesService.getAdmissionsModalities().subscribe({
+      next: (admissionsModalities: AdmissionModality[]) => this._admissionsModalities.next(admissionsModalities),
+      error: (error) => this.error = 'Admission Modalities could not be retrieved',
+    });
+  }
 }

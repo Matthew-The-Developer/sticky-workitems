@@ -2,16 +2,25 @@
   (onClose)="close()"
   [title]="title"
   [opened]="opened"
+  [width]="33"
 >
   <ng-container actions>
-    <button (click)="toggle()" color="primary" mat-button>
+    <button (click)="add()" color="primary" mat-button>
       <mat-icon>add</mat-icon> Admission
     </button>
   </ng-container>
 
   <ng-container left>
-    <ng-container *ngIf="admissionsModalities$ | async as admissionsModalities; else loadingAdmissionsModalities">
-      <mat-card *ngFor="let admissionModality of admissionsModalities" class="mat-elevation-z0 admission-modality">
+    <ng-container *ngIf="!error && !(admissionsModalities$ | async)">
+      <app-loader-template [template]="LoaderTemplate.AdmissionModalities" [count]="3"></app-loader-template>
+    </ng-container>
+
+    <ng-container *ngIf="admissionsModalities$ | async as admissionsModalities">
+      <mat-card
+        *ngFor="let admissionModality of admissionsModalities"
+        [class.selected]="isSelected(admissionModality)"
+        class="mat-elevation-z0 admission-modality"
+      >
         <mat-card-title-group>
           <mat-card-title>{{ admissionModality.location.name }}</mat-card-title>
           <mat-card-subtitle>
@@ -24,18 +33,23 @@
             <mat-chip-list *ngIf="admissionModality.hospitalServices">
               <mat-chip [selectable]="false">Hospital Services</mat-chip>
             </mat-chip-list>
-
-            <button mat-button color="primary" class="square">
+  
+            <button
+              (click)="edit(admissionModality)"
+              color="primary"
+              class="square"
+              mat-button
+            >
               <mat-icon>edit</mat-icon>
             </button>
   
-            <button mat-button color="warn" class="square">
+            <button color="warn" class="square" mat-button>
               <mat-icon>delete</mat-icon>
             </button>
           </div>
-
+  
         </mat-card-title-group>
-
+  
         <mat-card-content *ngIf="hasModalitiesOrNephrologists(admissionModality)">
           <mat-accordion multi>
             <mat-expansion-panel *ngIf="hasModalities(admissionModality)" class="mat-elevation-z0">
@@ -52,7 +66,7 @@
                 </mat-panel-description>
               </mat-expansion-panel-header>
             </mat-expansion-panel>
-
+  
             <mat-expansion-panel *ngIf="hasNephrologists(admissionModality)" class="mat-elevation-z0">
               <mat-expansion-panel-header>
                 <mat-panel-title>Nephrologists</mat-panel-title>
@@ -70,17 +84,30 @@
           </mat-accordion>
         </mat-card-content>
       </mat-card>
-
     </ng-container>
 
-    <ng-template #loadingAdmissionsModalities>
-      <app-loader-template [template]="LoaderTemplate.AdmissionModalities"></app-loader-template>
-    </ng-template>
+    <ng-container *ngIf="error && !(admissionsModalities$ | async)">
+      <div class="error">
+        <button (click)="retry()" color="warn" mat-button>
+          {{ error }}. Retry?
+        </button>
+      </div>
+    </ng-container>
   </ng-container>
   
   <ng-container right>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <mat-tab-group mat-stretch-tabs dynamicHeight>
+      <mat-tab label="Detail">
+        <ng-template matTabContent>
+          <app-admissions-modalities-form
+            (onCancel)="cancel()"
+            [admissionModality]="selected$ | async"
+          ></app-admissions-modalities-form>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="History">
+        <ng-template matTabContent></ng-template>
+      </mat-tab>
+    </mat-tab-group>
   </ng-container>
 </app-workitem-wrapper>

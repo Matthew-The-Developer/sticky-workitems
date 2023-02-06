@@ -8,6 +8,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { LeftComponent } from './core/left/left.component';
 import { SharedModule } from './shared/shared.module';
 import { PatientModule } from './patient/patient.module';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -18,9 +19,10 @@ import { PatientModule } from './patient/patient.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatNativeDateModule,
     MaterialModule,
     SharedModule,
-    PatientModule
+    PatientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

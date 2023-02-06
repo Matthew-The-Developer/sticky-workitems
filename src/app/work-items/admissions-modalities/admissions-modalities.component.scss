@@ -39,6 +39,8 @@ mat-card.admission-modality {
   mat-card-content {
     mat-accordion {
       mat-expansion-panel {
+        background: inherit;
+
         mat-panel-title {
           min-width: 100px;
           flex-grow: 0;
@@ -56,10 +58,25 @@ mat-card.admission-modality {
           }
         }
       }
+
+      mat-expansion-panel.selected {
+        background-color: #FFF3D6;
+      }
     }
   }
 }
 
+mat-card.admission-modality.selected {
+  background-color: #FFF3D6;
+}
+
 mat-card.admission-modality + mat-card.admission-modality {
   margin-top: 0.5rem;
+}
+
+.error {
+  display: grid;
+  place-content: center;
+
+  padding: 1rem;
 }

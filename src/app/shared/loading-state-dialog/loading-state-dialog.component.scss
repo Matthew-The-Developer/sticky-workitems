@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  .mat-dialog-title {
+    margin: 0;
+  }
+}
+
+mat-dialog-content {
+  width: 100%;
+  margin: 0;
+
+  display: grid;
+  padding: 0.5rem 0;
+  grid-template-columns: 1fr auto;
+  grid-auto-rows: auto;
+  gap: 1rem;
+  align-content: center;
+
+  mat-button-toggle-group.load-time {
+    .mat-button-toggle-label-content {
+      line-height: 28px;
+    }
+  }
+}

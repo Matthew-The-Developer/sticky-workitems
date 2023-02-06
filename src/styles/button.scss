@@ -21,3 +21,9 @@ button.mat-button.square {
   min-width: 36px;
   padding: 0;
 }
+
+mat-button-toggle-group.load-time {
+  .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 28px;
+  }
+}

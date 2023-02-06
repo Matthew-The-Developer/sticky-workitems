@@ -41,27 +41,77 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="LoaderTemplate.AdmissionModalities">
-    <app-loader [theme]="{
-      width: '100%',
-      height: '80px',
-      'margin-bottom': '0.5rem'
-    }"></app-loader>
-
-    <app-loader [theme]="{
-      width: '100%',
-      height: '80px'
-    }"></app-loader>
-  </ng-container>
-
-  <ng-container *ngSwitchCase="LoaderTemplate.AdmissionModalities">
-    <div class="column grid">
+    <div class="column">
       <app-loader 
         *ngFor="let item of items; let first = first; let last = last;"
         [theme]="{
-          width: '{{ 100 / items.length }}%',
-          height: '32px'
+          width: '100%',
+          height: '80px',
+          padding: first ? '0 0 0.25rem' : last ? '0.25em 0 0' : '0.25rem 0'
         }"
       ></app-loader>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="LoaderTemplate.AdmissionModalityForm">
+    <div class="form">
+      <app-loader [theme]="{
+        width: '100%',
+        height: '45px',
+        'grid-column': '1 / span 2'
+      }"></app-loader>
+
+      <app-loader [theme]="{
+        width: '100%',
+        height: '45px'
+      }"></app-loader>
+
+      <app-loader [theme]="{
+        width: '100%',
+        height: '45px'
+      }"></app-loader>
+
+      <app-loader [theme]="{
+        width: '100%',
+        height: '24px',
+        'grid-column': '1 / span 2'
+      }"></app-loader>
+
+      <app-loader [theme]="{
+        width: '100%',
+        height: '45px',
+        'grid-column': '1 / span 2'
+      }"></app-loader>
+
+      <app-loader [theme]="{
+        width: '100%',
+        height: '45px',
+        'grid-column': '1 / span 2'
+      }"></app-loader>
+
+      <app-loader [theme]="{
+        width: '100%',
+        height: '45px'
+      }"></app-loader>
+
+      <app-loader [theme]="{
+        width: '100%',
+        height: '45px'
+      }"></app-loader>
+
+      <div class="menu" [style.grid-column]="'1 / span 2'">
+        <span spacer></span>
+
+        <app-loader [theme]="{
+          width: '15%',
+          height: '36px'
+        }"></app-loader>
+  
+        <app-loader [theme]="{
+          width: '15%',
+          height: '36px'
+        }"></app-loader>
+      </div>
     </div>
   </ng-container>
 

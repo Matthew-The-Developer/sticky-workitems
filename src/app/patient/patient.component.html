@@ -74,8 +74,6 @@
         <app-menu (onSectionCreate)="createWorkItems($event)" (onCreate)="createWorkItem($event)" [menuInfo]="menu"></app-menu>
       </ng-container>
 
-      <span spacer></span>
-
       <button (click)="deleteWorkItems()" [disabled]="!(hasWorkItems$ | async)" color="warn" mat-button>
         Close Work Items <mat-icon>close</mat-icon>
       </button>

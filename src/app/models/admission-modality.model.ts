@@ -1,3 +1,5 @@
+import { Location } from "./location.model";
+
 export interface AdmissionModality {
   location: Location;
   hospitalServices?: boolean;
@@ -9,22 +11,6 @@ export interface AdmissionModality {
   nephrologists: Nephrologist[],
 }
 
-export interface Location {
-  id: string;
-  name: string;
-  type: LocationType,
-  phone: string;
-  street: string;
-  city: string;
-  state: string;
-  zip: string;
-}
-
-export enum LocationType {
-  CLINIC = 0,
-  ACUTE = 1,
-}
-
 export enum AdmissionReason {
   PreDialysisSupport = "Pre Dialysis Support",
   TransferInAsKidney = "Transfer in as Kidney",
@@ -33,6 +19,8 @@ export enum AdmissionReason {
 export enum DischargeReason {
   Death = "Death",
   DeclaredESRD = "Declared ESRD",
+  DiscontinedDialysis = "Discontined Dialysis",
+  LostToFollowUp = "Lost to Follow-up",
 }
 
 export interface Modality {

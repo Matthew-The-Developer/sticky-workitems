@@ -9,7 +9,7 @@ mat-card {
     padding: 0.5rem 1rem 0.5rem;
     border-radius: 4px;
 
-    background-color:antiquewhite;
+    background-color: #E1E4EE;
 
     mat-card-title {
       font-size: 20px;
@@ -19,11 +19,17 @@ mat-card {
   }
 
   mat-card-content {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
+    display: flex;
+    flex-flow: row nowrap;
 
     .content-section {
+      box-sizing: border-box;
+      opacity: 0.5;
+      transition: width 0.75s ease-in-out, opacity 0.75s ease-in-out;
+    }
+
+    .content-section.visible {
+      opacity: 1;
       padding: 1rem;
     }
   }

@@ -1,6 +1,7 @@
 export enum LoaderTemplate {
   Menu = 0,
   AdmissionModalities = 1,
-  BackgroundInformation = 2,
-  TableRows = 3,
+  AdmissionModalityForm = 2,
+  BackgroundInformation = 3,
+  TableRows = 4,
 }

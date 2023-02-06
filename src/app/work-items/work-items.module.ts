@@ -5,6 +5,8 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material.module';
 import { BackgroundInformationComponent } from './background-information/background-information.component';
 import { AddressesComponent } from './addresses/addresses.component';
+import { AdmissionsModalitiesFormComponent } from './admissions-modalities/admissions-modalities-form/admissions-modalities-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -12,12 +14,15 @@ import { AddressesComponent } from './addresses/addresses.component';
   declarations: [
     AdmissionsModalitiesComponent,
     BackgroundInformationComponent,
-    AddressesComponent
+    AddressesComponent,
+    AdmissionsModalitiesFormComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MaterialModule,
     SharedModule,
+    ReactiveFormsModule,
   ]
 })
 export class WorkItemsModule { }

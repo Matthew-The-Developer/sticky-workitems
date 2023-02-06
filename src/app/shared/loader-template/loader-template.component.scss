@@ -28,4 +28,12 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
+  div.form {
+    display: grid;
+    padding: 1rem 0;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    gap: 1rem;
+  }
 }

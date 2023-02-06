@@ -17,7 +17,13 @@ export class LoadService {
 
   constructor() {
     if (this.localStorage.getItem('state')) {
-      this._state.next(JSON.parse(this.localStorage.getItem('state')!, reviver));
+      const cachedState = JSON.parse(this.localStorage.getItem('state')!, reviver);
+
+      if (this._state.value.size !== cachedState.size) {
+        this.localStorage.setItem('state', JSON.stringify(this._state.value, replacer));
+      } else {
+        this._state.next(cachedState);
+      }
     } else {
       this.localStorage.setItem('state', JSON.stringify(this._state.value, replacer));
     }

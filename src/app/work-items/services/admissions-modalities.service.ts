@@ -71,41 +71,59 @@ export class AdmissionsModalitiesService {
   }
 
   getLocations(): Observable<Location[]> {
-    return of([
-      {
-        id: '12312',
-        name: 'Acme Acute (DEV)',
-        type: LocationType.ACUTE,
-        phone: '1231231234',
-        street: '123 Seaside Ave',
-        city: 'Swampville',
-        state: 'FL',
-        zip: '12345',
-      },
-      {
-        id: '545323',
-        name: 'Nashville (DEV)',
-        type: LocationType.CLINIC,
-        phone: '1231231234',
-        street: '123 Whiskey Lane',
-        city: 'Nashville',
-        state: 'TN',
-        zip: '12345',
-      },
-      {
-        id: '232423',
-        name: 'Chattanooga (DEV)',
-        type: LocationType.CLINIC,
-        phone: '1231231234',
-        street: '123 Choo Choo Drive',
-        city: 'Chattanooga',
-        state: 'TN',
-        zip: '12345',
-      },
-    ]).pipe(delay(Math.floor(Math.random() * (5000 - 3000 + 1) + 3000)));
+    const state = this.loadService.getState('admission locations');
+
+    if (state.successful) {
+      return of([
+        {
+          id: '12312',
+          name: 'Acme Acute (DEV)',
+          type: LocationType.ACUTE,
+          phone: '1231231234',
+          street: '123 Seaside Ave',
+          city: 'Swampville',
+          state: 'FL',
+          zip: '12345',
+        },
+        {
+          id: '545323',
+          name: 'Nashville (DEV)',
+          type: LocationType.CLINIC,
+          phone: '1231231234',
+          street: '123 Whiskey Lane',
+          city: 'Nashville',
+          state: 'TN',
+          zip: '12345',
+        },
+        {
+          id: '232423',
+          name: 'Chattanooga (DEV)',
+          type: LocationType.CLINIC,
+          phone: '1231231234',
+          street: '123 Choo Choo Drive',
+          city: 'Chattanooga',
+          state: 'TN',
+          zip: '12345',
+        },
+      ]).pipe(delay(Math.floor(Math.random() * (state.max - state.min + 1) + state.min)));
+    } else {
+      return of([]).pipe(
+        delay(Math.floor(Math.random() * (state.max - state.min + 1) + state.min)),
+        mergeMap(t => throwError(() => new Error()))
+      );
+    }
   }
 
   getAdmissionReasons(): Observable<string[]> {
-    return of(Object.values(AdmissionReason)).pipe(delay(Math.floor(Math.random() * (6000 - 3000 + 1) + 3000)));
+    const state = this.loadService.getState('admission reasons');
+
+    if (state.successful) {
+      return of(Object.values(AdmissionReason)).pipe(delay(Math.floor(Math.random() * (6000 - 3000 + 1) + 3000)));
+    } else {
+      return of([]).pipe(
+        delay(Math.floor(Math.random() * (state.max - state.min + 1) + state.min)),
+        mergeMap(t => throwError(() => new Error()))
+      );
+    }
   }
 }

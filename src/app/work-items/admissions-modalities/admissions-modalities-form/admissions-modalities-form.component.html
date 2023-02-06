@@ -77,7 +77,11 @@
 </ng-container>
 
 <ng-container *ngIf="error && (!(locations$ | async) || !(admissionReasons$ | async))">
-
+  <div class="error">
+    <button (click)="retry()" color="warn" mat-button>
+      {{ error }}. Retry?
+    </button>
+  </div>
 </ng-container>
 
 

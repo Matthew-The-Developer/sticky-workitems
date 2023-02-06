@@ -9,6 +9,8 @@ export class LoadService {
   _state: BehaviorSubject<Map<string, LoaderState>> = new BehaviorSubject<Map<string, LoaderState>>(new Map([
     ['menu', { successful: true, min: 0, max: 0 }],
     ['admission modalities', { successful: true, min: 1000, max: 3000 }],
+    ['admission reasons', { successful: true, min: 1000, max: 3000 }],
+    ['admission locations', { successful: true, min: 1000, max: 3000 }],
   ]));
 
   localStorage: Storage = window.localStorage;

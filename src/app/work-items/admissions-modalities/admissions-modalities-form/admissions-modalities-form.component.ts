@@ -29,17 +29,7 @@ export class AdmissionsModalitiesFormComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
-    this._locations = new BehaviorSubject<Location[] | null>(null);
-    this._admissionReasons = new BehaviorSubject<string[] | null>(null);
-
-    this.admissionsModalitiesService.getLocations().subscribe(
-      locations => this._locations.next(locations),
-      () => this.error = 'Locations could not be retrieved'
-    );
-    this.admissionsModalitiesService.getAdmissionReasons().subscribe(
-      reasons => this._admissionReasons.next(reasons),
-      () => this.error = 'Admission Reasons could not be retrieved'
-    );
+    this.load();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -55,8 +45,27 @@ export class AdmissionsModalitiesFormComponent implements OnInit, OnChanges {
     this.onCancel.emit();
   }
 
+  retry(): void {
+    this.error = null;
+    this.load();
+  }
+
   compareLocations(location1: Location, location2: Location) {
     return location1 && location2 && location1.id == location2.id;
+  }
+
+  private load(): void {
+    this._locations = new BehaviorSubject<Location[] | null>(null);
+    this._admissionReasons = new BehaviorSubject<string[] | null>(null);
+
+    this.admissionsModalitiesService.getLocations().subscribe(
+      locations => this._locations.next(locations),
+      () => this.error = 'Locations could not be retrieved'
+    );
+    this.admissionsModalitiesService.getAdmissionReasons().subscribe(
+      reasons => this._admissionReasons.next(reasons),
+      () => this.error = 'Admission Reasons could not be retrieved'
+    );
   }
 
   private createForm(): FormGroup {

@@ -79,18 +79,27 @@
 
   <mat-form-field compact>
     <mat-label>Discharge Date</mat-label>
-    <input matInput [matDatepicker]="dischargePicker">
+    <input matInput [matDatepicker]="dischargePicker" formControlName="dischargeDate">
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="dischargePicker"></mat-datepicker-toggle>
     <mat-datepicker #dischargePicker></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field compact>
-    <mat-label>Discharge Reason</mat-label>
-    <mat-select>
-      <mat-option value="1">Nashville (DEV)</mat-option>
-      <mat-option value="2">Chattanooga (DEV)</mat-option>
+    <mat-label>{{ failure('dischargeReason') || (dischargeReasons$ | async) ? 'Discharge Reason' : 'Loading Discharge Reasons...' }}</mat-label>
+    <mat-select formControlName="dischargeReason">
+      <mat-option *ngIf="dischargeReason?.value && !(dischargeReasons$ | async)" [value]="dischargeReason?.value">
+        {{ dischargeReason?.value }}
+      </mat-option>
+
+      <ng-container *ngIf="dischargeReasons$ | async as dischargeReasons">
+        <mat-option *ngFor="let reason of dischargeReasons" [value]="reason">
+          {{ reason }}
+        </mat-option>
+      </ng-container>
     </mat-select>
+    <mat-spinner *ngIf="!failure('dischargeReason') && !(dischargeReasons$ | async)" [diameter]="16" matSuffix></mat-spinner>
+    <mat-hint *ngIf="failure('dischargeReason')" class="failed">{{ failure('dischargeReason') }}</mat-hint>
   </mat-form-field>
 </form>
 

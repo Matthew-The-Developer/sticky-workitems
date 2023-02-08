@@ -114,7 +114,7 @@
     <mat-icon>close</mat-icon> Cancel
   </button>
 
-  <button [disabled]="!(locations$ | async) || !(admissionReasons$ | async) || !(nephrologists$ | async) || !(modalities$ | async)" color="primary" mat-flat-button>
+  <button [disabled]="!admissionModality && (!(locations$ | async) || !(admissionReasons$ | async) || !(nephrologists$ | async) || !(modalities$ | async))" color="primary" mat-flat-button>
     <ng-container *ngIf="!hasFailed && (!(locations$ | async) || !(admissionReasons$ | async) || !(nephrologists$ | async) || !(modalities$ | async)); else saveable">
       <mat-spinner [diameter]="18"></mat-spinner>
     </ng-container>

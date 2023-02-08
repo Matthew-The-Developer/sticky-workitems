@@ -5,6 +5,7 @@ import { LoadService } from 'src/app/services/load.service';
 import { AddressesComponent } from 'src/app/work-items/addresses/addresses.component';
 import { AdmissionsModalitiesComponent } from 'src/app/work-items/admissions-modalities/admissions-modalities.component';
 import { BackgroundInformationComponent } from 'src/app/work-items/background-information/background-information.component';
+import { CoordinationOfBenefitsComponent } from '../work-items/coordination-of-benefits/coordination-of-benefits.component';
 
 @Injectable({
   providedIn: 'root'
@@ -110,7 +111,7 @@ export class MenuService {
             {
               title: 'Coordination of Benefits',
               workitems: [
-                { label: 'Coordination of Benefits' },
+                { label: 'Coordination of Benefits', component: CoordinationOfBenefitsComponent },
               ]
             },
             {

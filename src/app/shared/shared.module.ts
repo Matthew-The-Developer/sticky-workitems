@@ -9,9 +9,11 @@ import { LoaderComponent } from './loader/loader.component';
 import { LoaderTemplateComponent } from './loader-template/loader-template.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingStateDialogComponent } from './loading-state-dialog/loading-state-dialog.component';
+import { MegaMenuComponent } from './mega-menu/mega-menu.component';
 
 @NgModule({
   declarations: [
+    MegaMenuComponent,
     MenuComponent,
     LoaderComponent,
     LoaderTemplateComponent,
@@ -27,6 +29,7 @@ import { LoadingStateDialogComponent } from './loading-state-dialog/loading-stat
     ReactiveFormsModule,
   ],
   exports: [
+    MegaMenuComponent,
     MenuComponent,
     LoaderComponent,
     LoaderTemplateComponent,

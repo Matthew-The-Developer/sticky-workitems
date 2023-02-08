@@ -1,0 +1,13 @@
+<ng-container *ngIf="menus$ | async as menus; else menusLoading">
+  <ng-container *ngFor="let menu of menus">
+    <app-menu (onSectionCreate)="createWorkItems($event)" (onCreate)="createWorkItem($event)" [menuInfo]="menu"></app-menu>
+  </ng-container>
+
+  <button (click)="deleteWorkItems()" [disabled]="!(hasWorkItems$ | async)" color="warn" mat-button>
+    Close Work Items <mat-icon>close</mat-icon>
+  </button>
+</ng-container>
+
+<ng-template #menusLoading>
+  <app-loader-template [template]="LoaderTemplate.Menu"></app-loader-template>
+</ng-template>

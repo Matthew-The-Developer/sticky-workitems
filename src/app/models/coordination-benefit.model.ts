@@ -10,7 +10,7 @@ export interface CoordinationBenefit {
 }
 
 export enum CoordinationBenefitStatus {
-  Started = 'Started',
+  Pending = 'Pending',
   InProgress = 'In Progress',
   Completed = 'Completed'
 }

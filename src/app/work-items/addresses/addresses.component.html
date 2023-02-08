@@ -53,14 +53,6 @@
       <tr mat-header-row *matHeaderRowDef="addressColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: addressColumns;"></tr>
     </table>
-
-    <ng-container *ngIf="addresses$ | async as addresses; else addressesLoading">
-
-    </ng-container>
-
-    <ng-template #addressesLoading>
-
-    </ng-template>
   </ng-container>
 
 </app-workitem-wrapper>

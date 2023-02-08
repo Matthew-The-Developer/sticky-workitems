@@ -98,15 +98,6 @@
       }
     }
 
-    mat-card-actions {
-      display: flex;
-
-      button.mat-button {
-        display: flex;
-        margin: 0;
-      }
-    }
-
     .example-header-image {
       background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
       background-size: cover;

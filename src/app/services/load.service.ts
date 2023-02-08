@@ -14,6 +14,7 @@ export class LoadService {
     ['admission locations', { successful: true, min: 1000, max: 3000 }],
     ['admission nephrologists', { successful: true, min: 1000, max: 3000 }],
     ['admission form modalities', { successful: true, min: 1000, max: 3000 }],
+    ['coordination of benefits', { successful: true, min: 1000, max: 3000 }],
   ]));
 
   localStorage: Storage = window.localStorage;

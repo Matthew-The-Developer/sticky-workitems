@@ -4,6 +4,7 @@ import { CoordinationBenefit } from 'src/app/models/coordination-benefit.model';
 import { LoaderTemplate } from 'src/app/models/loader-template.enum';
 import { WorkItem } from 'src/app/models/menu.model';
 import { WorkitemWrapperComponent } from 'src/app/shared/workitem-wrapper/workitem-wrapper.component';
+import { CoordinationOfBenefitsService } from '../services/coordination-of-benefits.service';
 import { WorkItemService } from '../services/work-item.service';
 
 @Component({
@@ -26,16 +27,20 @@ export class CoordinationOfBenefitsComponent implements OnInit {
   LoaderTemplate = LoaderTemplate;
 
   constructor(
+    private coordinationOfBenefitsService: CoordinationOfBenefitsService,
     private workItemService: WorkItemService
   ) { }
 
   ngOnInit(): void {
+    this._benefits = new BehaviorSubject<CoordinationBenefit[] | null>(null);
+
+    this.coordinationOfBenefitsService.getBenefits().subscribe({
+      next: benefits => this._benefits.next(benefits)
+    });
   }
 
   get benefits$(): Observable<CoordinationBenefit[] | null> { return this._benefits.asObservable() }
   get title(): string { return this.workItem.label }
 
-  close(): void {
-    this.workItemService.deleteWorkItem(this.workItem);
-  }
+  close(): void { this.workItemService.deleteWorkItem(this.workItem) }
 }

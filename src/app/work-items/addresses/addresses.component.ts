@@ -33,7 +33,9 @@ export class AddressesComponent implements OnInit {
   ngOnInit(): void {
     this._addresses = new BehaviorSubject<Address[] | null>(null);
 
-    this.addressesService.getAddresses().subscribe((addresses: Address[]) => this._addresses.next(addresses));
+    this.addressesService.getAddresses().subscribe({
+      next: addresses => this._addresses.next(addresses)
+    });
   }
 
   get addresses$(): Observable<Address[] | null> { return this._addresses.asObservable() }
@@ -44,9 +46,7 @@ export class AddressesComponent implements OnInit {
     this.opened = !this.opened;
   }
 
-  close(): void {
-    this.workItemService.deleteWorkItem(this.workItem);
-  }
+  close(): void { this.workItemService.deleteWorkItem(this.workItem) }
 
   streetAddress(address: Address): string { return address.streetAddressTwo ? `${address.streetAddressOne}, ${address.streetAddressTwo}` : address.streetAddressOne }
   cityStateZip(address: Address): string { return `${address.city}, ${address.state}, ${address.zip}` }

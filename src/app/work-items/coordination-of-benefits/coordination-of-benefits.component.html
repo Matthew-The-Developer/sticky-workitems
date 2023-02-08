@@ -4,70 +4,66 @@
   [isOpen]="opened"
   [width]="100"
 >
-  <ng-container actions>
-
-  </ng-container>
-
   <ng-container left>
     <table mat-table [dataSource]="(benefits$ | async) ?? []">
       <ng-container matColumnDef="date-entered">
         <th mat-header-cell *matHeaderCellDef>Date Entered</th>
         <td mat-cell *matCellDef="let element">{{ element.enterDate | date:'MM/dd/yyyy' }}</td>
       </ng-container>
+
+      <ng-container matColumnDef="date-reviewed">
+        <th mat-header-cell *matHeaderCellDef>Date Reviewed</th>
+        <td mat-cell *matCellDef="let element">{{ element.reviewDate | date:'MM/dd/yyyy' }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="date-verified">
+        <th mat-header-cell *matHeaderCellDef>Date Verified</th>
+        <td mat-cell *matCellDef="let element">{{ element.verifiedDate | date:'MM/dd/yyyy' }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="entered-by">
+        <th mat-header-cell *matHeaderCellDef>Entered By</th>
+        <td mat-cell *matCellDef="let element">{{ element.enteredBy }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="cob-date">
+        <th mat-header-cell *matHeaderCellDef>COB Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.cobDate | date:'MM/dd/yyyy' }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="recommended-primary">
+        <th mat-header-cell *matHeaderCellDef>Recommended Primary</th>
+        <td mat-cell *matCellDef="let element">{{ element.recommendedPrimary }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="recommended-secondary">
+        <th mat-header-cell *matHeaderCellDef>Recommended Secondary</th>
+        <td mat-cell *matCellDef="let element">{{ element.recommendedSecondary }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="primary" class="square">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" [attr.colspan]="benefitColumns.length">
+          <app-loader-template [template]="LoaderTemplate.TableRows" [count]="3"></app-loader-template>
+        </td>
+      </tr>
+  
+      <tr mat-header-row *matHeaderRowDef="benefitColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: benefitColumns;"></tr>
     </table>
-
-    <ng-container matColumnDef="date-reviewed">
-      <th mat-header-cell *matHeaderCellDef>Date Reviewed</th>
-      <td mat-cell *matCellDef="let element">{{ element.reviewDate | date:'MM/dd/yyyy' }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="date-verified">
-      <th mat-header-cell *matHeaderCellDef>Date Verified</th>
-      <td mat-cell *matCellDef="let element">{{ element.verifiedDate | date:'MM/dd/yyyy' }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="entered-by">
-      <th mat-header-cell *matHeaderCellDef>Entered By</th>
-      <td mat-cell *matCellDef="let element">{{ element.enteredBy }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef>Status</th>
-      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="cob-date">
-      <th mat-header-cell *matHeaderCellDef>COB Date</th>
-      <td mat-cell *matCellDef="let element">{{ element.cobDate | date:'MM/dd/yyyy' }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="recommended-primary">
-      <th mat-header-cell *matHeaderCellDef>Recommended Primary</th>
-      <td mat-cell *matCellDef="let element">{{ element.recommendedPrimary }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="recommended-secondary">
-      <th mat-header-cell *matHeaderCellDef>Recommended Secondary</th>
-      <td mat-cell *matCellDef="let element">{{ element.recommendedSecondary }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Actions</th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-button color="primary" class="square">
-          <mat-icon>edit</mat-icon>
-        </button>
-      </td>
-    </ng-container>
-
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" [attr.colspan]="benefitColumns.length">
-        <app-loader-template [template]="LoaderTemplate.TableRows" [count]="3"></app-loader-template>
-      </td>
-    </tr>
-
-    <tr mat-header-row *matHeaderRowDef="benefitColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: benefitColumns;"></tr>
   </ng-container>
 
   <ng-container right>

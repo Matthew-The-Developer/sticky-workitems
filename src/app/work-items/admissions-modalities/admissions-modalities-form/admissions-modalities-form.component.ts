@@ -23,7 +23,6 @@ export class AdmissionsModalitiesFormComponent implements OnInit, OnChanges {
 
   group: FormGroup = new FormGroup({});
   failed: Map<string, string> = new Map<string, string>();
-  error: string | null = null;
 
   LoaderTemplate = LoaderTemplate;
 
@@ -58,7 +57,7 @@ export class AdmissionsModalitiesFormComponent implements OnInit, OnChanges {
   }
 
   retry(): void {
-    this.error = null;
+    this.failed.clear();
 
     this.location?.disable();
     this.admissionReason?.disable();

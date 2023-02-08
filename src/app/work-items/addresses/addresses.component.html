@@ -1,7 +1,7 @@
 <app-workitem-wrapper
   (onClose)="close()"
-  [title]="title"
-  [opened]="opened"
+  [headerTitle]="title"
+  [isOpen]="opened"
 >
   <ng-container actions>
     <button (click)="toggle()" color="primary" mat-button>

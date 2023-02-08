@@ -6,22 +6,25 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
   styleUrls: ['./workitem-wrapper.component.scss']
 })
 export class WorkitemWrapperComponent implements OnInit, OnChanges {
-  @Input() title!: string;
-  @Input() opened: boolean = false;
+  @Input() headerTitle: string = 'Work Item';
   @Input() width: number = 50;
+  @Input() isNested: boolean = false;
+  @Input() isOpen: boolean = false;
+  @Input() isClosable: boolean = true;
   @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
 
   left: boolean = true;
   leftWidth: number = 100;
   right: boolean = false;
   rightWidth: number = 0;
+  transitionTime = 700;
 
   constructor() { }
   
   ngOnInit(): void { }
   
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.opened) {
+    if (this.isOpen) {
       this.leftWidth = (100 - this.width);
       this.rightWidth = this.width;
       setTimeout(() => {
@@ -29,7 +32,7 @@ export class WorkitemWrapperComponent implements OnInit, OnChanges {
         if (this.width === 100) {
           this.left = false;
         }
-      }, 350);
+      }, this.transitionTime / 2);
     } else {
       this.leftWidth = 100;
       this.rightWidth = 0;
@@ -38,7 +41,7 @@ export class WorkitemWrapperComponent implements OnInit, OnChanges {
         if (this.width === 100) {
           this.left = true;
         }
-      }, 350);
+      }, this.transitionTime / 2);
     }
   }
 

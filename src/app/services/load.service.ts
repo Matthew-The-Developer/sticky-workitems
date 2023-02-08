@@ -10,7 +10,10 @@ export class LoadService {
     ['menu', { successful: true, min: 0, max: 0 }],
     ['admission modalities', { successful: true, min: 1000, max: 3000 }],
     ['admission reasons', { successful: true, min: 1000, max: 3000 }],
+    ['discharge reasons', { successful: true, min: 1000, max: 3000 }],
     ['admission locations', { successful: true, min: 1000, max: 3000 }],
+    ['admission nephrologists', { successful: true, min: 1000, max: 3000 }],
+    ['admission form modalities', { successful: true, min: 1000, max: 3000 }],
   ]));
 
   localStorage: Storage = window.localStorage;
@@ -42,8 +45,6 @@ export class LoadService {
 
     this.localStorage.setItem('state', JSON.stringify(current, replacer));
     this._state.next(current);
-
-    console.log(this._state.value);
   }
 
   getState(item: string): LoaderState {

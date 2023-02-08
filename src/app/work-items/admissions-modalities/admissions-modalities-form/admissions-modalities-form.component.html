@@ -1,87 +1,117 @@
-<ng-container *ngIf="!error && (!(locations$ | async) || !(admissionReasons$ | async))">
-  <app-loader-template [template]="LoaderTemplate.AdmissionModalityForm"></app-loader-template>
-</ng-container>
+<form [formGroup]="group">
+  <mat-form-field compact class="full">
+    <mat-label>{{ failure('location') || (locations$ | async) ? 'Location' : 'Loading Locations...' }}</mat-label>
+    <mat-select [compareWith]="compareLocations" formControlName="location">
+      <mat-option *ngIf="location?.value && !(locations$ | async)" [value]="location?.value">
+        {{ location?.value.name }}
+      </mat-option>
 
-<ng-container *ngIf="(locations$ | async) && (admissionReasons$ | async)">
-  <form [formGroup]="group">
-    <mat-form-field compact class="full">
-      <mat-label>Location</mat-label>
-      <mat-select formControlName="location" [compareWith]="compareLocations">
-        <mat-option *ngFor="let location of (locations$ | async) ?? []" [value]="location">
+      <ng-container *ngIf="locations$ | async as locations">
+        <mat-option *ngFor="let location of locations" [value]="location">
           {{ location.name }}
         </mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field compact>
-      <mat-label>Admission Date</mat-label>
-      <input matInput [matDatepicker]="admissionPicker" formControlName="admissionDate">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="admissionPicker"></mat-datepicker-toggle>
-      <mat-datepicker #admissionPicker></mat-datepicker>
-    </mat-form-field>
-  
-    <mat-form-field compact>
-      <mat-label>Admission Reason</mat-label>
-      <mat-select formControlName="admissionReason">
-        <mat-option *ngFor="let reason of (admissionReasons$ | async) ?? []" [value]="reason">
+      </ng-container>
+    </mat-select>
+    <mat-spinner *ngIf="!failure('location') && !(locations$ | async)" [diameter]="16" matSuffix></mat-spinner>
+    <mat-hint *ngIf="failure('location')" class="failed">{{ failure('location') }}</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field compact>
+    <mat-label>Admission Date</mat-label>
+    <input matInput [matDatepicker]="admissionPicker" formControlName="admissionDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="admissionPicker"></mat-datepicker-toggle>
+    <mat-datepicker #admissionPicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field compact>
+    <mat-label>{{ failure('admissionReason') || (admissionReasons$ | async) ? 'Admission Reason' : 'Loading Admission Reasons...' }}</mat-label>
+    <mat-select formControlName="admissionReason">
+      <mat-option *ngIf="admissionReason?.value && !(admissionReasons$ | async)" [value]="admissionReason?.value">
+        {{ admissionReason?.value }}
+      </mat-option>
+
+      <ng-container *ngIf="admissionReasons$ | async as reasons">
+        <mat-option *ngFor="let reason of reasons" [value]="reason">
           {{ reason }}
         </mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-checkbox color="primary" class="full">Admission is Transient</mat-checkbox>
-  
-    <mat-form-field compact class="full">
-      <mat-label>Primary Nephrologist</mat-label>
-      <mat-select>
-        <mat-option value="1">Nashville (DEV)</mat-option>
-        <mat-option value="2">Chattanooga (DEV)</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field compact class="full">
-      <mat-label>Modality</mat-label>
-      <mat-select>
-        <mat-option value="1">Nashville (DEV)</mat-option>
-        <mat-option value="2">Chattanooga (DEV)</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field compact>
-      <mat-label>Discharge Date</mat-label>
-      <input matInput [matDatepicker]="dischargePicker">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="dischargePicker"></mat-datepicker-toggle>
-      <mat-datepicker #dischargePicker></mat-datepicker>
-    </mat-form-field>
-  
-    <mat-form-field compact>
-      <mat-label>Discharge Reason</mat-label>
-      <mat-select>
-        <mat-option value="1">Nashville (DEV)</mat-option>
-        <mat-option value="2">Chattanooga (DEV)</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </form>
-  
-  <div class="actions">
-    <button (click)="cancel()" mat-stroked-button>
-      <mat-icon>close</mat-icon> Cancel    
-    </button>
-    
-    <button color="primary" mat-flat-button>
+      </ng-container>
+    </mat-select>
+    <mat-spinner *ngIf="!failure('admissionReason') && !(admissionReasons$ | async)" [diameter]="16" matSuffix></mat-spinner>
+    <mat-hint *ngIf="failure('admissionReason')" class="failed">{{ failure('admissionReason') }}</mat-hint>
+  </mat-form-field>
+
+  <mat-checkbox formControlName="isTransient" color="primary" class="full">Admission is Transient</mat-checkbox>
+
+  <mat-form-field compact class="full">
+    <mat-label>{{ failure('primaryNephrologist') || (nephrologists$ | async) ? 'Primary Nephrologist' : 'Loading Nephrologists...' }}</mat-label>
+    <mat-select [compareWith]="compareNephrologists" formControlName="primaryNephrologist">
+      <mat-option *ngIf="primaryNephrologist?.value && !(nephrologists$ | async)" [value]="primaryNephrologist?.value">
+        {{ primaryNephrologist?.value.name }}
+      </mat-option>
+
+      <ng-container *ngIf="nephrologists$ | async as nephrologists">
+        <mat-option *ngFor="let nephrologist of nephrologists" [value]="nephrologist">
+          {{ nephrologist.name }}
+        </mat-option>
+      </ng-container>
+    </mat-select>
+    <mat-spinner *ngIf="!failure('primaryNephrologist') && !(nephrologists$ | async)" [diameter]="16" matSuffix></mat-spinner>
+    <mat-hint *ngIf="failure('primaryNephrologist')" class="failed">{{ failure('primaryNephrologist') }}</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field compact class="full">
+    <mat-label>{{ failure('modality') || (modalities$ | async) ? 'Modality' : 'Loading Modalities...' }}</mat-label>
+    <mat-select [compareWith]="compareModalities" formControlName="modality">
+      <mat-option *ngIf="modality?.value && !(modalities$ | async)" [value]="modality?.value">
+        {{ modality?.value.type }}
+      </mat-option>
+
+      <ng-container *ngIf="modalities$ | async as modalities">
+        <mat-option *ngFor="let modality of modalities" [value]="modality">
+          {{ modality.type }}
+        </mat-option>
+      </ng-container>
+    </mat-select>
+    <mat-spinner *ngIf="!failure('modality') && !(modalities$ | async)" [diameter]="16" matSuffix></mat-spinner>
+    <mat-hint *ngIf="failure('modality')" class="failed">{{ failure('modality') }}</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field compact>
+    <mat-label>Discharge Date</mat-label>
+    <input matInput [matDatepicker]="dischargePicker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="dischargePicker"></mat-datepicker-toggle>
+    <mat-datepicker #dischargePicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field compact>
+    <mat-label>Discharge Reason</mat-label>
+    <mat-select>
+      <mat-option value="1">Nashville (DEV)</mat-option>
+      <mat-option value="2">Chattanooga (DEV)</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+<div class="actions">
+  <button *ngIf="hasFailed" (click)="retry()" color="warn" mat-button>
+    {{ hasFailed }}. Retry?
+  </button>
+
+  <span spacer></span>
+
+  <button (click)="cancel()" mat-stroked-button>
+    <mat-icon>close</mat-icon> Cancel
+  </button>
+
+  <button [disabled]="!(locations$ | async) || !(admissionReasons$ | async) || !(nephrologists$ | async) || !(modalities$ | async)" color="primary" mat-flat-button>
+    <ng-container *ngIf="!hasFailed && (!(locations$ | async) || !(admissionReasons$ | async) || !(nephrologists$ | async) || !(modalities$ | async)); else saveable">
+      <mat-spinner [diameter]="18"></mat-spinner>
+    </ng-container>
+
+    <ng-template #saveable>
       <mat-icon>save</mat-icon> Save
-    </button>
-  </div>
-</ng-container>
-
-<ng-container *ngIf="error && (!(locations$ | async) || !(admissionReasons$ | async))">
-  <div class="error">
-    <button (click)="retry()" color="warn" mat-button>
-      {{ error }}. Retry?
-    </button>
-  </div>
-</ng-container>
-
-
+    </ng-template>
+  </button>
+</div>

@@ -1,12 +1,12 @@
-<mat-card class="work-item">
-  <mat-card-title-group class="center-title">
-    <mat-card-title>{{ title }}</mat-card-title>
+<mat-card [class.mat-elevation-z0]="isNested" class="work-item">
+  <mat-card-title-group *ngIf="!isNested" class="center-title">
+    <mat-card-title>{{ headerTitle }}</mat-card-title>
 
     <span spacer></span>
 
     <ng-content select="[actions]"></ng-content>
 
-    <button (click)="close()" color="warn" class="square" mat-button>
+    <button *ngIf="isClosable" (click)="close()" color="warn" class="square" mat-button>
       <mat-icon>close</mat-icon>
     </button>
   </mat-card-title-group>

@@ -9,4 +9,5 @@ export enum LoaderTime {
   OneToThree = 'One to Three',
   ThreeToFive = 'Three to Five',
   FiveToTen = 'Five to Ten',
+  FiveToTenMin = 'Five to Ten Minutes'
 }

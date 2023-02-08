@@ -39,6 +39,11 @@ export class AdmissionsModalitiesComponent implements OnInit {
   get selected$(): Observable<AdmissionModality | null> { return this._selected.asObservable() }
   get title(): string { return this.workItem.label }
 
+  retry(): void {
+    this.error = null;
+    this.load();
+  }
+
   add(): void {
     this.wrapper.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
     this._selected.next(null);
@@ -59,11 +64,6 @@ export class AdmissionsModalitiesComponent implements OnInit {
 
   close(): void {
     this.workItemService.deleteWorkItem(this.workItem);
-  }
-
-  retry(): void {
-    this.error = null;
-    this.load();
   }
 
   isSelected(admissionModality: AdmissionModality): boolean { return this._selected.value === admissionModality }

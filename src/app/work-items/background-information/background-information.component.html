@@ -1,7 +1,7 @@
 <app-workitem-wrapper
   (onClose)="close()"
-  [title]="title"
-  [opened]="opened"
+  [headerTitle]="title"
+  [isOpen]="opened"
 >
   <ng-container actions>
     <button (click)="toggle()" color="primary" mat-button>
@@ -11,7 +11,7 @@
 
   <ng-container left>
     <ng-container *ngIf="backgroundInformation$ | async as backgroundInformation; else backgroundInformationLoading">
-      <div class="information">
+      <div class="information" [class.compressed]="opened">
         <div class="item">
           <mat-icon color="primary">favorite</mat-icon>
           

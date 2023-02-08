@@ -17,3 +17,8 @@
 .mat-form-field-appearance-outline.compact .mat-form-field-wrapper {
   padding: 0;
 }
+
+.mat-form-field-appearance-legacy.mat-hint.failed,
+.mat-hint.failed {
+  color: #f44336;
+}

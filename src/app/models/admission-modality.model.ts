@@ -2,6 +2,7 @@ import { Location } from "./location.model";
 
 export interface AdmissionModality {
   location: Location;
+  isTransient: boolean;
   hospitalServices?: boolean;
   admissionDate: Date;
   admissionReason: AdmissionReason;

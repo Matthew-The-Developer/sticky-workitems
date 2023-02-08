@@ -7,6 +7,7 @@ import { BackgroundInformationComponent } from './background-information/backgro
 import { AddressesComponent } from './addresses/addresses.component';
 import { AdmissionsModalitiesFormComponent } from './admissions-modalities/admissions-modalities-form/admissions-modalities-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CoordinationOfBenefitsComponent } from './coordination-of-benefits/coordination-of-benefits.component';
 
 
 
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdmissionsModalitiesComponent,
     BackgroundInformationComponent,
     AddressesComponent,
-    AdmissionsModalitiesFormComponent
+    AdmissionsModalitiesFormComponent,
+    CoordinationOfBenefitsComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,18 @@
+table {
+  width: 100%;
+
+  tr.mat-header-row {
+    height: 36px;
+
+    th.cdk-column-actions.mat-column-actions {
+      text-align: right;
+    }
+  }
+
+  td.cdk-column-actions.mat-column-actions {
+    height: 48px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}

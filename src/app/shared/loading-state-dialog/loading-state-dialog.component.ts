@@ -14,6 +14,7 @@ export class LoadingStateDialogComponent implements OnInit {
     [LoaderTime.OneToThree, { min: 1000, max: 3000 }],
     [LoaderTime.ThreeToFive, { min: 3000, max: 5000 }],
     [LoaderTime.FiveToTen, { min: 5000, max: 10000 }],
+    [LoaderTime.FiveToTenMin, { min: 300000, max: 600000 }],
   ]);
 
   constructor(private loadService: LoadService) { }
@@ -28,20 +29,18 @@ export class LoadingStateDialogComponent implements OnInit {
   }
 
   changeTime(name: string, { successful }: LoaderState, time: LoaderTime): void {
-    console.log(name, successful, time, this.LoaderTimeToMinMax.get(time));
-    
     this.loadService.updateState(name, { successful, ...this.LoaderTimeToMinMax.get(time) ?? { min: 0, max: 0 } });
   }
 
   getLoadTimeFromMinMax({ min, max }: LoaderState): LoaderTime {
-    console.log(min, max, min > 0 && max < 4)
-    
     if (min > 0 && max < 4000) {
       return LoaderTime.OneToThree;
     } else if (min > 1000 && max < 6000) {
       return LoaderTime.ThreeToFive;
     } else if (min > 3000 && max < 11000) {
       return LoaderTime.FiveToTen;
+    } else if (min > 5000 && max < 610000) {
+      return LoaderTime.FiveToTenMin;
     } else {
       return LoaderTime.None;
     }

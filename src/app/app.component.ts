@@ -12,7 +12,7 @@ export class AppComponent {
 
   openLoadingState(): void {
     this.dialog.open(LoadingStateDialogComponent, {
-      width: '25%',
+      maxWidth: '50%',
       hasBackdrop: false,
       panelClass: 'loader-state-dialog'
     })

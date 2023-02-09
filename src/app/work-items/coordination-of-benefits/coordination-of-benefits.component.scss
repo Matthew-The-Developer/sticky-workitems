@@ -16,3 +16,26 @@ table {
     align-items: center;
   }
 }
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 1rem;
+
+  button {
+    mat-icon {
+      width: 18px;
+      height: 18px;
+      font-size: 18px;
+    }
+
+    mat-spinner {
+      margin: 0 auto;
+    }
+  }
+
+  button + button {
+    margin-left: 0.5rem;
+  }
+}

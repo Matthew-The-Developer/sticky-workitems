@@ -10,6 +10,7 @@ import { LoaderTemplateComponent } from './loader-template/loader-template.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingStateDialogComponent } from './loading-state-dialog/loading-state-dialog.component';
 import { MegaMenuComponent } from './mega-menu/mega-menu.component';
+import { PatientHeaderComponent } from './patient-header/patient-header.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MegaMenuComponent } from './mega-menu/mega-menu.component';
     WorkitemWrapperComponent,
     CompactDirective,
     SpacerDirective,
+    PatientHeaderComponent,
   ],
   imports: [
     CommonModule,

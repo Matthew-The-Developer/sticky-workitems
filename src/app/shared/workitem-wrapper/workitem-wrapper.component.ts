@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { WorkItemMode } from 'src/app/models/work-item-mode.enum';
 
 @Component({
   selector: 'app-workitem-wrapper',

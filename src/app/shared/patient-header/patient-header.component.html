@@ -1,1 +1,72 @@
-<p>patient-header works!</p>
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ (patient$ | async)?.name }}</mat-card-title>
+    <mat-card-subtitle>{{ (patient$ | async)?.id }}</mat-card-subtitle>
+
+    <div class="information">
+      <div class="item">
+        <div *ngFor="let day of (patient$ | async)?.schedule" [class.active]="day.active" class="day">{{ day.label }}</div>
+      </div>
+
+      <div class="item">
+        <div class="primary-nephrologist example-header-image"></div>
+        <div class="text">
+          <span class="label">Primary Nephrologist</span>
+          <span class="value">{{ (patient$ | async)?.primaryNephrologist?.name }}</span>
+        </div>
+      </div>
+
+      <div class="item safe">
+        <mat-icon>check</mat-icon>
+
+        <div class="text">
+          <span class="label">Allergies / Adverse Reactions</span>
+          <span class="value">{{ (patient$ | async)?.allergies ? 'No Known Allergies' : 'Unknown Allergies' }}</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <mat-icon color="primary">place</mat-icon>
+        <div class="text">
+          <span class="label">Home Clinic</span>
+          <span class="value">{{ (patient$ | async)?.homeClinic?.name }} - {{ (patient$ | async)?.homeClinic?.id }}</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <mat-icon color="primary">male</mat-icon>
+        <div class="text">
+          <span class="label">Sex</span>
+          <span class="value">{{ (patient$ | async)?.sex }}</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <mat-icon color="primary">cake</mat-icon>
+        <div class="text">
+          <span class="label">Date of Birth</span>
+          <span class="value">{{ (patient$ | async)?.dateOfBirth | date:'MM/dd/yyyy' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button mat-button class="square">
+        <mat-icon>expand_more</mat-icon>
+      </button>
+
+      <button mat-button color="warn" class="square">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-actions>
+    <app-mega-menu 
+      (onCreateWorkItem)="createWorkItem($event)"
+      (onCreateWorkItems)="createWorkItems($event)"
+      (onDeleteWorkItems)="deleteWorkItems()"
+    ></app-mega-menu>
+  </mat-card-actions>
+</mat-card>

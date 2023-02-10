@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 import { WorkItemMode } from 'src/app/models/work-item-mode.enum';
+import { WorkItemService } from 'src/app/work-items/services/work-item.service';
 
 @Component({
   selector: 'app-workitem-wrapper',
@@ -20,9 +22,14 @@ export class WorkitemWrapperComponent implements OnInit, OnChanges {
   rightWidth: number = 0;
   transitionTime = 700;
 
-  constructor() { }
+  constructor(
+    private workItemService: WorkItemService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) { }
   
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.offset$.subscribe(() => this.changeDetectorRef.detectChanges());
+  }
   
   ngOnChanges(changes: SimpleChanges): void {
     if (this.isOpen) {
@@ -45,6 +52,8 @@ export class WorkitemWrapperComponent implements OnInit, OnChanges {
       }, this.transitionTime / 2);
     }
   }
+
+  get offset$(): Observable<number> { return this.workItemService.headerheight$ }
 
   close(): void {
     this.onClose.emit();

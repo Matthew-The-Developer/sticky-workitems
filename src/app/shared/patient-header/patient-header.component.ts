@@ -1,6 +1,8 @@
-import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
+import { MatCard } from '@angular/material/card';
 import { Observable } from 'rxjs';
 import { MenuSection, WorkItem } from 'src/app/models/menu.model';
+import { PatientHeaderMode } from 'src/app/models/patient-header-mode.enum';
 import { Patient } from 'src/app/models/patient.model';
 import { WorkItemService } from 'src/app/work-items/services/work-item.service';
 
@@ -9,32 +11,32 @@ import { WorkItemService } from 'src/app/work-items/services/work-item.service';
   templateUrl: './patient-header.component.html',
   styleUrls: ['./patient-header.component.scss']
 })
-export class PatientHeaderComponent implements OnInit {
+export class PatientHeaderComponent implements OnInit, AfterViewInit {
   @Input() patient$: Observable<Patient | null> = new Observable<Patient | null>();
-  @Input() container: ViewContainerRef | null = null;
+  @ViewChild(MatCard, { read: ElementRef }) card!: ElementRef<HTMLElement>;
 
-  constructor(
-    private workItemService: WorkItemService
-  ) { }
+  mode: boolean = true;
+
+  constructor(private workItemService: WorkItemService) { }
+
 
   ngOnInit(): void {
   }
 
-  createWorkItems(section: MenuSection): void {
-    if (this.container) {
-      this.workItemService.createWorkItems(section, this.container);
-    }
+  ngAfterViewInit(): void {
+    console.log(this.card, this.card.nativeElement);
+    const observer = new ResizeObserver(entries => {
+      const height = entries[0].contentRect.height + 2 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+      this.workItemService.setHeight(height);
+    });
+    observer.observe(this.card.nativeElement);
   }
-  
-  createWorkItem(workItem: WorkItem): void {
-    if (this.container) {
-      this.workItemService.createWorkItem(workItem, this.container);
-    }
+
+  changeMode(): void {
+    this.mode = !this.mode;
   }
-  
-  deleteWorkItems(): void {
-    if (this.container) {
-      this.workItemService.deleteWorkItems(this.container);
-    }
-  }
+
+  createWorkItems(section: MenuSection): void { this.workItemService.createWorkItems(section) }
+  createWorkItem(workItem: WorkItem): void { this.workItemService.createWorkItem(workItem) }
+  deleteWorkItems(): void { this.workItemService.deleteWorkItems() }
 }

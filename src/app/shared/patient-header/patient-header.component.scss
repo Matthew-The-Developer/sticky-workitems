@@ -52,6 +52,13 @@ mat-card {
         }
         .day + .day { margin-left: 0.25rem; }
 
+        .primary-nephrologist {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          margin-right: 0.25rem;
+        }
+
         .text {
           display: flex;
           flex-flow: column wrap;

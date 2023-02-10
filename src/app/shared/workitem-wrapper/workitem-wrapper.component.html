@@ -1,5 +1,5 @@
 <mat-card [class.mat-elevation-z0]="isNested" class="work-item">
-  <mat-card-title-group *ngIf="!isNested" class="center-title">
+  <mat-card-title-group *ngIf="!isNested" [style.top.px]="offset$ | async" class="center-title">
     <ng-content select="[back]"></ng-content>
 
     <mat-card-title>{{ headerTitle }}</mat-card-title>

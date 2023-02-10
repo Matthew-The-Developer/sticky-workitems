@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, Renderer2, ViewChild, ViewContainerRef } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { LocationType } from '../models/location.model';
-import { MenuSection, WorkItem } from '../models/menu.model';
 import { Patient, Sex } from '../models/patient.model';
+import { PatientHeaderComponent } from '../shared/patient-header/patient-header.component';
 import { WorkItemService } from '../work-items/services/work-item.service';
 
 @Component({
@@ -10,8 +10,11 @@ import { WorkItemService } from '../work-items/services/work-item.service';
   templateUrl: './patient.component.html',
   styleUrls: ['./patient.component.scss']
 })
-export class PatientComponent implements OnInit {
+export class PatientComponent implements OnInit, AfterViewInit {
+  @ViewChild(PatientHeaderComponent, { read: ElementRef, static: true }) patientHeader!: ElementRef;
+  @ViewChild('patientHeaderBorder') patientHeaderBorder!: ElementRef;
   @ViewChild('workItems', {read: ViewContainerRef}) container!: ViewContainerRef;
+  
   patient$: Observable<Patient> = of({
     name: 'John Doe',
     id: '12345',
@@ -44,12 +47,17 @@ export class PatientComponent implements OnInit {
   });
 
   constructor(
-    private workItemService: WorkItemService
+    private workItemService: WorkItemService,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.headerHeight$.subscribe(() => this.changeDetectorRef.detectChanges());
+  }
 
-  createWorkItems(section: MenuSection): void { this.workItemService.createWorkItems(section, this.container) }
-  createWorkItem(workItem: WorkItem): void { this.workItemService.createWorkItem(workItem, this.container) }
-  deleteWorkItems(): void { this.workItemService.deleteWorkItems(this.container) }
+  ngAfterViewInit(): void {
+    this.workItemService.setContainer(this.container);
+  }
+
+  get headerHeight$(): Observable<number> { return this.workItemService.headerheight$ }
 }

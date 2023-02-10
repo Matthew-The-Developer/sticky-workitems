@@ -52,7 +52,7 @@
     </div>
 
     <div class="actions">
-      <button mat-button class="square">
+      <button (click)="changeMode()" mat-button class="square">
         <mat-icon>expand_more</mat-icon>
       </button>
 
@@ -62,7 +62,7 @@
     </div>
   </mat-card-header>
 
-  <mat-card-actions>
+  <mat-card-actions *ngIf="mode">
     <app-mega-menu 
       (onCreateWorkItem)="createWorkItem($event)"
       (onCreateWorkItems)="createWorkItems($event)"

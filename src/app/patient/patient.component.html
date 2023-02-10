@@ -1,4 +1,4 @@
-<app-patient-header [patient$]="patient$" [container]="container"></app-patient-header>
-<div class="border"></div>
+<app-patient-header [patient$]="patient$"></app-patient-header>
+<div #patientHeaderBorder [style.height.px]="headerHeight$ | async" class="border"></div>
 
 <ng-template #workItems></ng-template>

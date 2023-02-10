@@ -8,6 +8,7 @@ import { AddressesComponent } from './addresses/addresses.component';
 import { AdmissionsModalitiesFormComponent } from './admissions-modalities/admissions-modalities-form/admissions-modalities-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoordinationOfBenefitsComponent } from './coordination-of-benefits/coordination-of-benefits.component';
+import { WorkItemService } from './services/work-item.service';
 
 
 
@@ -25,6 +26,9 @@ import { CoordinationOfBenefitsComponent } from './coordination-of-benefits/coor
     MaterialModule,
     SharedModule,
     ReactiveFormsModule,
+  ],
+  providers: [
+    WorkItemService
   ]
 })
 export class WorkItemsModule { }

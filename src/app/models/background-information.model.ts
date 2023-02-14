@@ -4,7 +4,7 @@ export interface BackgroundInformation {
   language?: Language;
   citizenship?: Citizenship;
   ethnicity: Ethnicity;
-  race: Race 
+  race: Race;
 }
 
 export enum MartialStatus {

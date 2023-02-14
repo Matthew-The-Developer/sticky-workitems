@@ -1,22 +1,20 @@
-.information {
-  flex-grow: 1;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-between;
-
+:host {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  
   .item {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-
+  
     mat-icon {
       background-color: rgba($color: #0c2678, $alpha: .12);
       padding: 0.25rem;
       margin-right: 0.25rem;
       border-radius: calc(24px + 0.5rem);
     }
-
+  
     .day {
       width: 24px;
       height: 24px;
@@ -27,7 +25,7 @@
       border-radius: 50%;
       padding: 0.25rem;
       font-weight: 500;
-
+  
       background-color: rgba(0, 0, 0, .12);
       color: rgba(0, 0, 0, .38);
     }
@@ -36,14 +34,14 @@
       color: white;
     }
     .day + .day { margin-left: 0.25rem; }
-
+  
     .primary-nephrologist {
       width: 32px;
       height: 32px;
       border-radius: 50%;
       margin-right: 0.25rem;
     }
-
+  
     .text {
       display: flex;
       flex-flow: column wrap;
@@ -58,7 +56,7 @@
         line-height: 16px;
       }
     }
-
+  
     .item.safe {
       mat-icon {
         background-color: rgba($color: #5cb85c, $alpha: .24); 
@@ -66,9 +64,10 @@
       }
     }
   }
+
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}

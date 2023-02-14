@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, ComponentRef, Inject, Injectable, ViewContainerRef } from '@angular/core';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { MenuSection, WorkItem } from 'src/app/models/menu.model';
 
 @Injectable({

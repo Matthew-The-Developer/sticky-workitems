@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingStateDialogComponent } from './loading-state-dialog/loading-state-dialog.component';
 import { MegaMenuComponent } from './mega-menu/mega-menu.component';
 import { PatientHeaderComponent } from './patient-header/patient-header.component';
+import { PatientHeaderWapperComponent } from './patient-header-wapper/patient-header-wapper.component';
+import { PatientInformationComponent } from './patient-information/patient-information.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,11 @@ import { PatientHeaderComponent } from './patient-header/patient-header.componen
     LoaderTemplateComponent,
     LoadingStateDialogComponent,
     PatientHeaderComponent,
+    PatientHeaderWapperComponent,
     WorkitemWrapperComponent,
     CompactDirective,
     SpacerDirective,
+    PatientInformationComponent,
   ],
   imports: [
     CommonModule,

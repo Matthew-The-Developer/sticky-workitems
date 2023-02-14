@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ (patient$ | async)?.name }}</mat-card-title>
+    <mat-card-subtitle>{{ (patient$ | async)?.id }}</mat-card-subtitle>
+
+    <ng-container *ngIf="mode !== PatientHeaderMode.Collapsed">
+      <ng-content select="[information]"></ng-content>
+    </ng-container>
+
+    <ng-container *ngIf="mode === PatientHeaderMode.Collapsed">
+      <ng-content select="[collapsedMenu]"></ng-content>
+    </ng-container>
+
+    <div [class.collapsed]="mode === PatientHeaderMode.Collapsed" class="actions">
+      <button (click)="changeMode()" mat-button class="square">
+        <mat-icon>{{ shouldExpand ? 'expand_more' : 'expand_less' }}</mat-icon>
+      </button>
+    
+      <button mat-button color="warn" class="square">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>    
+  </mat-card-header>
+
+  <mat-card-content *ngIf="mode === PatientHeaderMode.Expanded">
+    <ng-content select="[additionInformation]"></ng-content>
+  </mat-card-content>
+
+  <mat-card-actions *ngIf="mode !== PatientHeaderMode.Collapsed">
+    <ng-content select="[standardMenu]"></ng-content>
+  </mat-card-actions>
+</mat-card>

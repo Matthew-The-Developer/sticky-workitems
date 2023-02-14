@@ -1,6 +1,5 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
-import { WorkItemMode } from 'src/app/models/work-item-mode.enum';
 import { WorkItemService } from 'src/app/work-items/services/work-item.service';
 
 @Component({
@@ -11,6 +10,7 @@ import { WorkItemService } from 'src/app/work-items/services/work-item.service';
 export class WorkitemWrapperComponent implements OnInit, OnChanges {
   @Input() headerTitle: string = 'Work Item';
   @Input() width: number = 50;
+  @Input() mode: 'side' | 'over' = 'side';
   @Input() isNested: boolean = false;
   @Input() isOpen: boolean = false;
   @Input() isClosable: boolean = true;
@@ -32,6 +32,24 @@ export class WorkitemWrapperComponent implements OnInit, OnChanges {
   }
   
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    if (changes['isOpen']) {
+      if (this.mode === 'side') {
+        this.toggleSide();
+      } else {
+        this.toggleOver();
+      }
+    }
+
+  }
+
+  get offset$(): Observable<number> { return this.workItemService.headerheight$ }
+
+  close(): void {
+    this.onClose.emit();
+  }
+
+  private toggleSide(): void {
     if (this.isOpen) {
       this.leftWidth = (100 - this.width);
       this.rightWidth = this.width;
@@ -53,9 +71,13 @@ export class WorkitemWrapperComponent implements OnInit, OnChanges {
     }
   }
 
-  get offset$(): Observable<number> { return this.workItemService.headerheight$ }
-
-  close(): void {
-    this.onClose.emit();
+  private toggleOver(): void {
+    if (this.isOpen) {
+      this.rightWidth = this.width;
+      setTimeout(() => this.right = true, this.transitionTime / 2);
+    } else {
+      this.rightWidth = 0;
+      setTimeout(() => this.right = false, this.transitionTime / 2);
+    }
   }
 }

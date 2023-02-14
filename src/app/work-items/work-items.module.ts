@@ -9,6 +9,7 @@ import { AdmissionsModalitiesFormComponent } from './admissions-modalities/admis
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoordinationOfBenefitsComponent } from './coordination-of-benefits/coordination-of-benefits.component';
 import { WorkItemService } from './services/work-item.service';
+import { AddressesFormComponent } from './addresses/addresses-form/addresses-form.component';
 
 
 
@@ -18,7 +19,8 @@ import { WorkItemService } from './services/work-item.service';
     BackgroundInformationComponent,
     AddressesComponent,
     AdmissionsModalitiesFormComponent,
-    CoordinationOfBenefitsComponent
+    CoordinationOfBenefitsComponent,
+    AddressesFormComponent
   ],
   imports: [
     CommonModule,

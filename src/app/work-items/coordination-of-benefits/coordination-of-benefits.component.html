@@ -3,6 +3,7 @@
   [headerTitle]="title"
   [isOpen]="opened"
   [width]="100"
+  mode="over"
 >
   <ng-container *ngIf="opened" back>
     <button (click)="back()" [style.order]="-1" class="square" mat-button>

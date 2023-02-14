@@ -13,7 +13,7 @@
     </button>
   </mat-card-title-group>
 
-  <mat-card-content>
+  <mat-card-content [ngClass]="mode">
     <div
       [style.width.%]="leftWidth"
       [class.visible]="left"
@@ -27,7 +27,7 @@
     <div
       [style.width.%]="rightWidth"
       [class.visible]="right"
-      class="content-section"
+      class="content-section overlay"
     >
       <ng-content *ngIf="right" select="[right]"></ng-content>
     </div>

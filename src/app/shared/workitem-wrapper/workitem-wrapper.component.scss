@@ -18,28 +18,22 @@ mat-card {
     }
   }
 
-  mat-card-content {
-    display: flex;
-    flex-flow: row nowrap;
-
-    .content-section {
-      box-sizing: border-box;
-      transition: width 0.75s ease-in-out;
-    }
-
-    .content-section.visible {
-      padding: 1rem;
-    }
+  .content-section {
+    box-sizing: border-box;
+    transition: width 0.75s ease-in-out;
   }
+
+  .content-section.visible { padding: 1rem; }
+  .content-section.nested { padding: 0; }
+  mat-divider.nested { margin: 0 1rem; }
 
   mat-card-content.side {
     display: flex;
     flex-flow: row nowrap;
 
     .content-section {
-      box-sizing: border-box;
       opacity: 0.25;
-      transition: width 0.75s ease-in-out, opacity 0.75s;
+      transition: width 0.75s ease-in-out, opacity 0.75s ease-in-out;
     }
 
     .content-section.visible {
@@ -53,12 +47,15 @@ mat-card {
     .content-section {
       grid-area: 1 / 1;
     }
-
+    
     .content-section.overlay {
-      border-left: 1px solid rgba($color: #000000, $alpha: 0.12);
       background-color: white;
       justify-self: end;
       z-index: 3;
+    }
+
+    .content-section.partial-width {
+      border-left: 1px solid rgba($color: #000000, $alpha: 0.12);
     }
   }
 }

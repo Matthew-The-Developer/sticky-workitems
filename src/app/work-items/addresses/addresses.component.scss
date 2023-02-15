@@ -15,4 +15,8 @@ table {
     justify-content: flex-end;
     align-items: center;
   }
+
+  td.mat-cell.no-data {
+    text-align: center;
+  }
 }

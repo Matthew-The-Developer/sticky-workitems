@@ -11,7 +11,7 @@ export class AdmissionsModalitiesService {
   constructor(private loadService: LoadService) { }
 
   getAdmissionsModalities(): Observable<AdmissionModality[]> {
-    const state = this.loadService.getState('admission modalities');
+    const state = this.loadService.getState('admissions');
 
     if (state.successful) {
       return of([
@@ -73,7 +73,7 @@ export class AdmissionsModalitiesService {
   }
 
   getLocations(): Observable<Location[]> {
-    const state = this.loadService.getState('admission locations');
+    const state = this.loadService.getState('admissions/locations');
 
     if (state.successful) {
       return of([
@@ -117,7 +117,7 @@ export class AdmissionsModalitiesService {
   }
 
   getAdmissionReasons(): Observable<string[]> {
-    const state = this.loadService.getState('admission reasons');
+    const state = this.loadService.getState('admissions/admissionReasons');
 
     if (state.successful) {
       return of(Object.values(AdmissionReason)).pipe(delay(Math.floor(Math.random() * (state.max - state.min + 1) + state.min)));
@@ -130,7 +130,7 @@ export class AdmissionsModalitiesService {
   }
 
   getNephrologists(): Observable<Nephrologist[]> {
-    const state = this.loadService.getState('admission nephrologists');
+    const state = this.loadService.getState('admission/nephrologists');
 
     if (state.successful) {
       return of([
@@ -160,7 +160,7 @@ export class AdmissionsModalitiesService {
   }
 
   getModalities(): Observable<Modality[]> {
-    const state = this.loadService.getState('admission form modalities');
+    const state = this.loadService.getState('admissions/modalities');
 
     if (state.successful) {
       return of([
@@ -182,7 +182,7 @@ export class AdmissionsModalitiesService {
   }
 
   getDischargeReasons(): Observable<string[]> {
-    const state = this.loadService.getState('discharge reasons');
+    const state = this.loadService.getState('admissions/dischargeReasons');
 
     if (state.successful) {
       return of(Object.values(AdmissionReason)).pipe(delay(Math.floor(Math.random() * (state.max - state.min + 1) + state.min)));

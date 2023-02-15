@@ -4,22 +4,14 @@ mat-toolbar {
   grid-template-columns: auto 1fr auto;
   grid-template-areas: "logo location actions";
 
-  padding: 0;
+  padding: 0 0 0 0.5rem;
 
   .logo {
     grid-area: logo;
-    width: 64px;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row nowrap;
 
-    text-align: center;
-
-    .title {
-      font-size: 10px;
-      line-height: 10px;
-    }
     .subtitle {
-      line-height: 20px;
       color:#43ccf7;
     }
   }

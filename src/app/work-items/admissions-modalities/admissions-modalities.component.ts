@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AdmissionModality } from 'src/app/models/admission-modality.model';
 import { LoaderTemplate } from 'src/app/models/loader-template.enum';
@@ -13,6 +13,7 @@ import { WorkItemService } from '../services/work-item.service';
   styleUrls: ['./admissions-modalities.component.scss']
 })
 export class AdmissionsModalitiesComponent implements OnInit {
+  @Input() isNested = false;
   @ViewChild(WorkitemWrapperComponent, {read: ElementRef}) wrapper!: ElementRef<HTMLElement>;
 
   _admissionsModalities: BehaviorSubject<AdmissionModality[] | null> = new BehaviorSubject<AdmissionModality[] | null>(null);
@@ -31,9 +32,7 @@ export class AdmissionsModalitiesComponent implements OnInit {
     private workItemService: WorkItemService
   ) { }
 
-  ngOnInit(): void {
-    this.load();
-  }
+  ngOnInit(): void { this.load() }
 
   get admissionsModalities$(): Observable<AdmissionModality[] | null> { return this._admissionsModalities.asObservable() }
   get selected$(): Observable<AdmissionModality | null> { return this._selected.asObservable() }
@@ -62,9 +61,7 @@ export class AdmissionsModalitiesComponent implements OnInit {
     this.wrapper.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  close(): void {
-    this.workItemService.deleteWorkItem(this.workItem);
-  }
+  close(): void { this.workItemService.deleteWorkItem(this.workItem) }
 
   isSelected(admissionModality: AdmissionModality): boolean { return this._selected.value === admissionModality }
   hasModalitiesOrNephrologists(admissionModality: AdmissionModality): boolean { return this.hasModalities(admissionModality) || this.hasNephrologists(admissionModality) }
@@ -77,7 +74,7 @@ export class AdmissionsModalitiesComponent implements OnInit {
 
     this.admissionsModalitiesService.getAdmissionsModalities().subscribe({
       next: (admissionsModalities: AdmissionModality[]) => this._admissionsModalities.next(admissionsModalities),
-      error: (error) => this.error = 'Admission Modalities could not be retrieved',
+      error: () => this.error = 'Admission Modalities could not be retrieved',
     });
   }
 }

@@ -15,12 +15,12 @@ import { AddressesFormComponent } from './addresses/addresses-form/addresses-for
 
 @NgModule({
   declarations: [
-    AdmissionsModalitiesComponent,
-    BackgroundInformationComponent,
     AddressesComponent,
+    AddressesFormComponent,
+    AdmissionsModalitiesComponent,
     AdmissionsModalitiesFormComponent,
+    BackgroundInformationComponent,
     CoordinationOfBenefitsComponent,
-    AddressesFormComponent
   ],
   imports: [
     CommonModule,

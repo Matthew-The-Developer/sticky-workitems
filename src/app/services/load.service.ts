@@ -8,12 +8,16 @@ import { LoaderState } from '../models/loader-state.model';
 export class LoadService {
   _state: BehaviorSubject<Map<string, LoaderState>> = new BehaviorSubject<Map<string, LoaderState>>(new Map([
     ['menu', { successful: true, min: 0, max: 0 }],
-    ['admission modalities', { successful: true, min: 1000, max: 3000 }],
-    ['admission reasons', { successful: true, min: 1000, max: 3000 }],
-    ['discharge reasons', { successful: true, min: 1000, max: 3000 }],
-    ['admission locations', { successful: true, min: 1000, max: 3000 }],
-    ['admission nephrologists', { successful: true, min: 1000, max: 3000 }],
-    ['admission form modalities', { successful: true, min: 1000, max: 3000 }],
+    ['addresses', { successful: true, min: 1000, max: 3000 }],
+    ['addresses/types', { successful: true, min: 1000, max: 3000 }],
+    ['addresses/countries', { successful: true, min: 1000, max: 3000 }],
+    ['addresses/states', { successful: true, min: 1000, max: 3000 }],
+    ['admissions', { successful: true, min: 1000, max: 3000 }],
+    ['admissions/admissionReasons', { successful: true, min: 1000, max: 3000 }],
+    ['admissions/dischargeReasons', { successful: true, min: 1000, max: 3000 }],
+    ['admissions/locations', { successful: true, min: 1000, max: 3000 }],
+    ['admissions/nephrologists', { successful: true, min: 1000, max: 3000 }],
+    ['admissions/modalities', { successful: true, min: 1000, max: 3000 }],
     ['coordination of benefits', { successful: true, min: 1000, max: 3000 }],
   ]));
 

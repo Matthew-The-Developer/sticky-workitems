@@ -1,1 +1,126 @@
-<p>addresses-form works!</p>
+<form [formGroup]="group">
+  <mat-form-field compact class="full">
+    <mat-label>{{ failure('type') || (types$ | async) ? 'Address Type' : 'Loading Address Types...' }}</mat-label>
+    <mat-select formControlName="type">
+      <mat-option *ngIf="type?.value && !(types$ | async)" [value]="type?.value">
+        {{ type?.value }}
+      </mat-option>
+
+      <ng-container *ngIf="types$ | async as types">
+        <mat-option *ngFor="let type of types" [value]="type">
+          {{ type }}
+        </mat-option>
+      </ng-container>
+    </mat-select>
+    <mat-spinner *ngIf="!failure('type') && !(types$ | async)" [diameter]="16" matSuffix></mat-spinner>
+    <mat-hint *ngIf="failure('type')" class="failed">{{ failure('type') }}</mat-hint>
+    <mat-error matErrorMessage></mat-error>
+  </mat-form-field>
+
+  <mat-form-field compact class="full">
+    <mat-label>Address</mat-label>
+    <input
+      formControlName="addressOne"
+      autocomplete="off"
+      type="text"
+      matInput
+    >
+    <mat-error matErrorMessage></mat-error>
+  </mat-form-field>
+
+  <mat-form-field compact class="full">
+    <mat-label>Address 2</mat-label>
+    <input
+      formControlName="addressTwo"
+      autocomplete="off"
+      type="text"
+      matInput
+    >
+    <mat-error matErrorMessage></mat-error>
+  </mat-form-field>
+
+  <mat-form-field compact class="full">
+    <mat-label>{{ failure('country') || (countries$ | async) ? 'Country' : 'Loading Countries...' }}</mat-label>
+    <mat-select formControlName="country">
+      <mat-option *ngIf="country?.value && !(countries$ | async)" [value]="country?.value">
+        {{ country?.value }}
+      </mat-option>
+
+      <ng-container *ngIf="countries$ | async as countries">
+        <mat-option *ngFor="let countryOption of countries" [value]="countryOption">
+          {{ countryOption }}
+        </mat-option>
+      </ng-container>
+    </mat-select>
+    <mat-spinner *ngIf="!failure('country') && !(countries$ | async)" [diameter]="16" matSuffix></mat-spinner>
+    <mat-hint *ngIf="failure('country')" class="failed">{{ failure('country') }}</mat-hint>
+    <mat-error matErrorMessage></mat-error>
+  </mat-form-field>
+
+  <mat-form-field compact>
+    <mat-label>City</mat-label>
+    <input
+      formControlName="city"
+      autocomplete="off"
+      type="text"
+      matInput
+    >
+    <mat-error matErrorMessage></mat-error>
+  </mat-form-field>
+
+  <mat-form-field compact>
+    <mat-label>{{ failure('state') || (states$ | async) ? 'State' : 'Loading States...' }}</mat-label>
+    <mat-select formControlName="state">
+      <mat-option *ngIf="state?.value && !(states$ | async)" [value]="state?.value">
+        {{ state?.value }}
+      </mat-option>
+
+      <ng-container *ngIf="states$ | async as states">
+        <mat-option *ngFor="let state of states" [value]="state">
+          {{ state }}
+        </mat-option>
+      </ng-container>
+    </mat-select>
+    <mat-spinner *ngIf="!failure('state') && !(states$ | async)" [diameter]="16" matSuffix></mat-spinner>
+    <mat-hint *ngIf="failure('state')" class="failed">{{ failure('state') }}</mat-hint>
+    <mat-error matErrorMessage></mat-error>
+  </mat-form-field>
+
+  <mat-form-field compact>
+    <mat-label>County</mat-label>
+    <input
+      formControlName="county"
+      autocomplete="off"
+      type="text"
+      matInput
+    >
+    <mat-error matErrorMessage></mat-error>
+  </mat-form-field>
+
+  <mat-form-field compact>
+    <mat-label>Zip Code</mat-label>
+    <input
+      formControlName="zip"
+      autocomplete="off"
+      type="text"
+      matInput
+    >
+    <mat-error matErrorMessage></mat-error>
+  </mat-form-field>
+</form>
+
+<div class="actions">
+  <button *ngIf="hasFailed" (click)="retry()" color="warn" mat-button>
+    {{ hasFailed }}. Retry?
+  </button>
+
+  <span spacer></span>
+
+  <button (click)="cancel()" mat-stroked-button>
+    <mat-icon>close</mat-icon> Cancel
+  </button>
+
+  <button (click)="save()" color="primary" mat-flat-button>
+    <mat-icon>save</mat-icon> Save
+  </button>
+</div>

@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AdmissionModality, Modality, Nephrologist } from 'src/app/models/admission-modality.model';
-import { LoaderTemplate } from 'src/app/models/loader-template.enum';
 import { Location } from 'src/app/models/location.model';
 import { AdmissionsModalitiesService } from '../../services/admissions-modalities.service';
 
@@ -24,20 +23,13 @@ export class AdmissionsModalitiesFormComponent implements OnInit, OnChanges {
   group: FormGroup = new FormGroup({});
   failed: Map<string, string> = new Map<string, string>();
 
-  LoaderTemplate = LoaderTemplate;
-
   constructor(
     private fb: FormBuilder,
     private admissionsModalitiesService: AdmissionsModalitiesService
   ) { }
 
-  ngOnInit(): void {
-    this.load(); 
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.group = this.admissionModality ? this.editForm(this.admissionModality) : this.createForm();
-  }
+  ngOnInit(): void { this.load() }
+  ngOnChanges(): void { this.group = this.admissionModality ? this.editForm(this.admissionModality) : this.createForm() }
 
   get locations$(): Observable<Location[] | null> { return this._locations.asObservable() }
   get admissionReasons$(): Observable<string[] | null> { return this._admissionReasons.asObservable() }
@@ -86,45 +78,35 @@ export class AdmissionsModalitiesFormComponent implements OnInit, OnChanges {
         this._locations.next(locations);
         this.location?.enable();
       },
-      error: () => {
-        this.failed.set('location', 'Locations could not be retrieved');
-      }
+      error: () => this.failed.set('location', 'Locations could not be retrieved')
     });
     this.admissionsModalitiesService.getAdmissionReasons().subscribe({
       next: reasons => {
         this._admissionReasons.next(reasons);
         this.admissionReason?.enable();
       },
-      error: () => {
-        this.failed.set('admissionReason', 'Admission Reasons could not be retrieved');
-      }
+      error: () => this.failed.set('admissionReason', 'Admission Reasons could not be retrieved')
     });
     this.admissionsModalitiesService.getDischargeReasons().subscribe({
       next: reasons => {
         this._dischargeReasons.next(reasons);
         this.dischargeReason?.enable();
       },
-      error: () => {
-        this.failed.set('dischargeReason', 'Discharge Reason could not be retrieved');
-      }
+      error: () => this.failed.set('dischargeReason', 'Discharge Reason could not be retrieved')
     });
     this.admissionsModalitiesService.getNephrologists().subscribe({
       next: nephrologists => {
         this._nephrologists.next(nephrologists);
         this.primaryNephrologist?.enable();
       },
-      error: () => {
-        this.failed.set('primaryNephrologist', 'Nephrologists could not be retrieved');
-      }
+      error: () => this.failed.set('primaryNephrologist', 'Nephrologists could not be retrieved')
     });
     this.admissionsModalitiesService.getModalities().subscribe({
       next: modalities => {
         this._modalities.next(modalities);
         this.modality?.enable();
       },
-      error: () => {
-        this.failed.set('modality', 'Modalities could not be retrieved');
-      }
+      error: () => this.failed.set('modality', 'Modalities could not be retrieved')
     });
   }
 

@@ -1,0 +1,34 @@
+form {
+  display: grid;
+  padding: 1rem 0;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: auto;
+  gap: 1rem;
+
+  font-size: 16px;
+
+  .full {
+    grid-column: 1 / span 2;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    mat-icon {
+      width: 18px;
+      height: 18px;
+      font-size: 18px;
+    }
+
+    mat-spinner {
+      margin: 0 auto;
+    }
+  }
+
+  button + button {
+    margin-left: 0.5rem;
+  }
+}

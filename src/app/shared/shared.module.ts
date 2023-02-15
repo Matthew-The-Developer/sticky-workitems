@@ -13,6 +13,7 @@ import { MegaMenuComponent } from './mega-menu/mega-menu.component';
 import { PatientHeaderComponent } from './patient-header/patient-header.component';
 import { PatientHeaderWapperComponent } from './patient-header-wapper/patient-header-wapper.component';
 import { PatientInformationComponent } from './patient-information/patient-information.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PatientInformationComponent } from './patient-information/patient-infor
     CompactDirective,
     SpacerDirective,
     PatientInformationComponent,
+    ErrorMessageComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { PatientInformationComponent } from './patient-information/patient-infor
     WorkitemWrapperComponent,
     CompactDirective,
     SpacerDirective,
+    ErrorMessageComponent,
   ],
   providers: [
     CompactDirective,

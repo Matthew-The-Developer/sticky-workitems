@@ -2,6 +2,7 @@
   (onClose)="close()"
   [headerTitle]="title"
   [isOpen]="opened"
+  [isNested]="isNested"
   [width]="40"
 >
   <ng-container actions>
@@ -96,7 +97,7 @@
   </ng-container>
   
   <ng-container right>
-    <mat-tab-group mat-stretch-tabs dynamicHeight>
+    <mat-tab-group class="work-item" mat-stretch-tabs dynamicHeight>
       <mat-tab label="Detail">
         <app-admissions-modalities-form
           (onCancel)="cancel()"

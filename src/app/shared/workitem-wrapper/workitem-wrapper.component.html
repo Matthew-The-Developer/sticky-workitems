@@ -16,16 +16,17 @@
   <mat-card-content [ngClass]="mode">
     <div
       [style.width.%]="leftWidth"
-      [class.visible]="left"
+      [ngClass]="{ 'visible': left, 'nested': isNested }"
       class="content-section"
     >
       <ng-content *ngIf="left" select="[left]"></ng-content>
     </div>
 
-    <mat-divider *ngIf="left && right" [vertical]="true"></mat-divider>
+    <mat-divider *ngIf="left && right" [vertical]="true" [ngClass]="{ 'nested': isNested }"></mat-divider>
 
     <div
       [style.width.%]="rightWidth"
+      [ngClass]="{ 'visible': right, 'nested': isNested, 'partial-width': width !== 100 }"
       [class.visible]="right"
       class="content-section overlay"
     >

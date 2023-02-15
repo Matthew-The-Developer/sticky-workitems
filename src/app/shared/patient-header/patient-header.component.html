@@ -1,10 +1,10 @@
 <app-patient-header-wapper [patient$]="patient$" [default]="modeDefault">
   <ng-container information>
-    <app-patient-information [patient$]="patient$" [properties]="standardProperties"></app-patient-information>
+    <app-patient-information [patient$]="patient$" [properties]="standardProperties" class="standard"></app-patient-information>
   </ng-container>
 
   <ng-container additionInformation>
-    <app-patient-information [patient$]="patient$" [properties]="expandedProperties"></app-patient-information>
+    <app-patient-information [patient$]="patient$" [properties]="expandedProperties" class="expanded"></app-patient-information>
   </ng-container>
 
   <ng-container collapsedMenu>

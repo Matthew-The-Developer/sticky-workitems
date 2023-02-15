@@ -1,5 +1,5 @@
 <ng-container *ngFor="let property of patientItems$ | async">
-  <div class="item">
+  <div class="item" [style.order]="order.get(property[0])">
     <ng-container *ngIf="property[0] === 'schedule'; else hasLabel">
       <div *ngFor="let day of property[1]" [class.active]="day.active" class="day">{{ day.label }}</div>
     </ng-container>
@@ -20,6 +20,7 @@
           <span *ngSwitchCase="'primaryCarePhysician'" class="value">{{ property[1].name }}</span>
           <span *ngSwitchCase="'homeClinic'" class="value">{{ property[1].name }} - {{ property[1].id }}</span>
           <span *ngSwitchCase="'dateOfBirth'" class="value">{{ property[1] | date:'MM/dd/yyyy' }}</span>
+          <span *ngSwitchCase="'dialysisStartDate'" class="value">{{ property[1] | date:'MM/dd/yyyy' }}</span>
           <span *ngSwitchCase="'address'" class="value">
             {{ property[1].streetAddressOne }} <ng-container *ngIf="property[1].streetAddressTwo">, {{ property[1].streetAddressTwo }}</ng-container>, {{ property[1].city }}, {{ property[1].state }}, {{ property[1].zip }}
           </span>

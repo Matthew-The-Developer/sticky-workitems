@@ -53,6 +53,21 @@ export class PatientInformationComponent implements OnInit {
     ['race', 'accessibility_new'],
   ]);
 
+  order: Map<string, number> = new Map<string, number>([
+    ['address', 1],
+    ['phoneNumber', 5],
+    ['socialSecurityNumber', 9],
+    ['dialysisStartDate', 2],
+    ['esrdCause', 6],
+    ['primaryCarePhysician', 10],
+    ['insurance', 3],
+    ['certificationNumber', 7],
+    ['payer', 11],
+    ['religion', 4],
+    ['ethnicity', 8],
+    ['race', 12],
+  ]);
+
   constructor() { }
   ngOnInit(): void { }
 

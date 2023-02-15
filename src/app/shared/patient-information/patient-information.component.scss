@@ -1,8 +1,4 @@
 :host {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1rem;
-  
   .item {
     display: flex;
     flex-flow: row nowrap;
@@ -71,3 +67,14 @@
   }
 }
 
+:host.standard {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+}
+
+:host.expanded {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}

@@ -32,7 +32,6 @@ export class WorkitemWrapperComponent implements OnInit, OnChanges {
   }
   
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     if (changes['isOpen']) {
       if (this.mode === 'side') {
         this.toggleSide();

@@ -1,32 +1,43 @@
 <ng-container *ngFor="let property of patientItems$ | async">
-  <div class="item" [style.order]="order.get(property[0])">
-    <ng-container *ngIf="property[0] === 'schedule'; else hasLabel">
-      <div *ngFor="let day of property[1]" [class.active]="day.active" class="day">{{ day.label }}</div>
-    </ng-container>
+  <ng-container *ngIf="property[0] === 'allergies'; else notButton">
+    <button mat-button class="item">
+      <mat-icon color="primary">check</mat-icon>
 
-    <ng-template #hasLabel>
-      <ng-container [ngSwitch]="property[0]">
-        <mat-icon *ngSwitchCase="'allergies'" color="primary">check</mat-icon>
-        <mat-icon *ngSwitchCase="'sex'" color="primary">{{ icon.get(property[1]) }}</mat-icon>
-        <mat-icon *ngSwitchDefault color="primary">{{ icon.get(property[0]) }}</mat-icon>
-      </ng-container>
-      
       <div class="text">
         <span class="label">{{ label.get(property[0]) }}</span>
-
-        <ng-container [ngSwitch]="property[0]">
-          <span *ngSwitchCase="'allergies'" class="value">{{ property[1] ? 'No Known Allergies' : 'Unknown Allergies' }}</span>
-          <span *ngSwitchCase="'primaryNephrologist'" class="value">{{ property[1].name }}</span>
-          <span *ngSwitchCase="'primaryCarePhysician'" class="value">{{ property[1].name }}</span>
-          <span *ngSwitchCase="'homeClinic'" class="value">{{ property[1].name }} - {{ property[1].id }}</span>
-          <span *ngSwitchCase="'dateOfBirth'" class="value">{{ property[1] | date:'MM/dd/yyyy' }}</span>
-          <span *ngSwitchCase="'dialysisStartDate'" class="value">{{ property[1] | date:'MM/dd/yyyy' }}</span>
-          <span *ngSwitchCase="'address'" class="value">
-            {{ property[1].streetAddressOne }} <ng-container *ngIf="property[1].streetAddressTwo">, {{ property[1].streetAddressTwo }}</ng-container>, {{ property[1].city }}, {{ property[1].state }}, {{ property[1].zip }}
-          </span>
-          <span *ngSwitchDefault class="value">{{ property[1] }}</span>
-        </ng-container>
+        <span class="value">{{ property[1] ? 'No Known Allergies' : 'Unknown Allergies' }}</span>
       </div>
-    </ng-template>
-  </div>
+    </button>
+  </ng-container>
+
+  <ng-template #notButton>
+    <div class="item" [style.order]="order.get(property[0])">
+      <ng-container *ngIf="property[0] === 'schedule'; else hasLabel">
+        <div *ngFor="let day of property[1]" [class.active]="day.active" class="day">{{ day.label }}</div>
+      </ng-container>
+  
+      <ng-template #hasLabel>
+        <ng-container [ngSwitch]="property[0]">
+          <mat-icon *ngSwitchCase="'sex'" color="primary">{{ icon.get(property[1]) }}</mat-icon>
+          <mat-icon *ngSwitchDefault color="primary">{{ icon.get(property[0]) }}</mat-icon>
+        </ng-container>
+        
+        <div class="text">
+          <span class="label">{{ label.get(property[0]) }}</span>
+  
+          <ng-container [ngSwitch]="property[0]">
+            <span *ngSwitchCase="'primaryNephrologist'" class="value">{{ property[1].name }}</span>
+            <span *ngSwitchCase="'primaryCarePhysician'" class="value">{{ property[1].name }}</span>
+            <span *ngSwitchCase="'homeClinic'" class="value">{{ property[1].name }} - {{ property[1].id }}</span>
+            <span *ngSwitchCase="'dateOfBirth'" class="value">{{ property[1] | date:'MM/dd/yyyy' }}</span>
+            <span *ngSwitchCase="'dialysisStartDate'" class="value">{{ property[1] | date:'MM/dd/yyyy' }}</span>
+            <span *ngSwitchCase="'address'" class="value">
+              {{ property[1].streetAddressOne }} <ng-container *ngIf="property[1].streetAddressTwo">, {{ property[1].streetAddressTwo }}</ng-container>, {{ property[1].city }}, {{ property[1].state }}, {{ property[1].zip }}
+            </span>
+            <span *ngSwitchDefault class="value">{{ property[1] }}</span>
+          </ng-container>
+        </div>
+      </ng-template>
+    </div>
+  </ng-template>
 </ng-container>

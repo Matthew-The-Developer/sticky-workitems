@@ -14,7 +14,7 @@
     </mat-select>
     <mat-spinner *ngIf="!failure('type') && !(types$ | async)" [diameter]="16" matSuffix></mat-spinner>
     <mat-hint *ngIf="failure('type')" class="failed">{{ failure('type') }}</mat-hint>
-    <mat-error matErrorMessage></mat-error>
+    <mat-error *ngIf="!failure('type')" matErrorMessage></mat-error>
   </mat-form-field>
 
   <mat-form-field compact class="full">
@@ -54,7 +54,7 @@
     </mat-select>
     <mat-spinner *ngIf="!failure('country') && !(countries$ | async)" [diameter]="16" matSuffix></mat-spinner>
     <mat-hint *ngIf="failure('country')" class="failed">{{ failure('country') }}</mat-hint>
-    <mat-error matErrorMessage></mat-error>
+    <mat-error *ngIf="!failure('country')" matErrorMessage></mat-error>
   </mat-form-field>
 
   <mat-form-field compact>
@@ -83,7 +83,7 @@
     </mat-select>
     <mat-spinner *ngIf="!failure('state') && !(states$ | async)" [diameter]="16" matSuffix></mat-spinner>
     <mat-hint *ngIf="failure('state')" class="failed">{{ failure('state') }}</mat-hint>
-    <mat-error matErrorMessage></mat-error>
+    <mat-error *ngIf="!failure('state')" matErrorMessage></mat-error>
   </mat-form-field>
 
   <mat-form-field compact>

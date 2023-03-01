@@ -12,7 +12,7 @@
   </ng-container>
 
   <ng-container left>
-    <table mat-table [dataSource]="(addresses$ | async) ?? []">
+    <table mat-table [dataSource]="addresses$ | async | array">
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef>Type</th>
         <td mat-cell *matCellDef="let element">{{ element.type }}</td>
@@ -48,22 +48,26 @@
 
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell no-data" [attr.colspan]="addressColumns.length">
-          <ng-container *ngIf="!(addresses$ | async); else loaded">
-            <ng-container *ngIf="!error; else failed">
-              <app-loader-template [template]="LoaderTemplate.TableRows" [count]="3"></app-loader-template>
-            </ng-container>
+          <ng-container *ngIf="addresses$ | async | isLoading; else loaded">
+            <app-loader-template [template]="LoaderTemplate.TableRows" [count]="3"></app-loader-template>
 
             <ng-template #failed>
-              <div class="error">
-                <button (click)="retry()" color="warn" mat-button>
-                  {{ error }}. Retry?
-                </button>
-              </div>
+
             </ng-template>
           </ng-container>
 
           <ng-template #loaded>
-            <span>No Addresses found</span>
+            <ng-container *ngIf="addresses$ | async | isError; noContent">
+              <div class="error">
+                <button (click)="retry()" color="warn" mat-button>
+                  {{ (addresses$ | async | function)() }}. Retry?
+                </button>
+              </div>
+            </ng-container>
+
+            <ng-template #noContent>
+              <span>No Addresses found</span>
+            </ng-template>
           </ng-template>
         </td>
       </tr>

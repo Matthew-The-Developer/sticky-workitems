@@ -1,11 +1,11 @@
 <ng-container *ngFor="let property of patientItems$ | async">
   <ng-container *ngIf="property[0] === 'allergies'; else notButton">
     <button mat-button class="item">
-      <mat-icon color="primary">check</mat-icon>
+      <mat-icon color="primary" [ngClass]="allergyState(property[1]).state">{{ allergyState(property[1]).icon }}</mat-icon>
 
       <div class="text">
         <span class="label">{{ label.get(property[0]) }}</span>
-        <span class="value">{{ property[1] ? 'No Known Allergies' : 'Unknown Allergies' }}</span>
+        <span class="value">{{ allergyState(property[1]).value }}</span>
       </div>
     </button>
   </ng-container>

@@ -10,6 +10,18 @@
       margin-right: 0.25rem;
       border-radius: calc(24px + 0.5rem);
     }
+
+    mat-icon.safe {
+      background-color: rgba($color: #0c2678, $alpha: .12);
+    }
+
+    mat-icon.warn {
+      background-color: rgba($color: #0c2678, $alpha: .12);
+    }
+
+    mat-icon.danger {
+      background-color: rgba($color: #0c2678, $alpha: .12);
+    }
   
     .day {
       width: 24px;
@@ -69,7 +81,7 @@
 
 :host.standard {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, auto);
   gap: 1rem;
 }
 

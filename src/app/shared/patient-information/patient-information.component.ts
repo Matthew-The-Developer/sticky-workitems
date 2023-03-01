@@ -72,4 +72,16 @@ export class PatientInformationComponent implements OnInit {
   ngOnInit(): void { }
 
   get patientItems$(): Observable<any[] | null> { return this.patient$.pipe(map(patient => Object.entries(patient ?? {})), map(properties => properties.filter(property => this.properties.includes(property[0])))) }
+
+  allergyState(property: any): { state: string; value: string, icon: string } {
+    if (property) {
+      if (property.length > 0) {
+        return { state: 'warn', value: `${property.length} Known Allergies / Adverse Reactions`, icon: 'priority_high' }
+      } else {
+        return { state: 'safe', value: 'No Known Allergies / Adverse Reactions', icon: 'check' };
+      }
+    } else {
+      return { state: 'danger', value: 'No Allergies / Adverse Reactions Inputed', icon: 'warning' };
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, filter, Observable } from 'rxjs';
 import { Address } from 'src/app/models/address.model';
 import { LoaderTemplate } from 'src/app/models/loader-template.enum';
 import { WorkItem } from 'src/app/models/menu.model';
@@ -16,11 +16,10 @@ export class AddressesComponent implements OnInit {
   @Input() isNested = false;
   @ViewChild(WorkitemWrapperComponent, {read: ElementRef}) wrapper!: ElementRef<HTMLElement>;
   
-  _addresses: BehaviorSubject<Address[] | null> = new BehaviorSubject<Address[] | null>(null);
+  _addresses: BehaviorSubject<Address[] | null | (() => string)> = new BehaviorSubject<Address[] | null | (() => string)>(null);
   _selected: BehaviorSubject<Address | null> = new BehaviorSubject<Address | null>(null);
   addressColumns: string[] = ['type', 'address', 'city-state-zip', 'country', 'actions']; 
 
-  error: string | null = null;
   opened: boolean = false;
   workItem: WorkItem = {
     label: 'Addresses'
@@ -35,12 +34,11 @@ export class AddressesComponent implements OnInit {
 
   ngOnInit(): void { this.load() }
 
-  get addresses$(): Observable<Address[] | null> { return this._addresses.asObservable() }
+  get addresses$(): Observable<Address[] | null | (() => string)> { return this._addresses.asObservable() }
   get selected$(): Observable<Address | null> { return this._selected.asObservable() }
   get title(): string { return this.workItem.label }
 
   retry(): void {
-    this.error = null;
     this.load();
   }
 
@@ -68,12 +66,12 @@ export class AddressesComponent implements OnInit {
   cityStateZip(address: Address): string { return `${address.city}, ${address.state}, ${address.zip}` }
 
   private load(): void {
-    this._addresses = new BehaviorSubject<Address[] | null>(null);
+    this._addresses = new BehaviorSubject<Address[] | null | (() => string)>(null);
     this._selected = new BehaviorSubject<Address | null>(null);
     
     this.addressesService.getAddresses().subscribe({
       next: addresses => this._addresses.next(addresses),
-      error: () => this.error = 'Addresses could not be retrieved',
+      error: () => this._addresses.next(() => 'Could not retrieve Address')
     });
   }
 }

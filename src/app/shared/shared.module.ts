@@ -14,6 +14,10 @@ import { PatientHeaderComponent } from './patient-header/patient-header.componen
 import { PatientHeaderWapperComponent } from './patient-header-wapper/patient-header-wapper.component';
 import { PatientInformationComponent } from './patient-information/patient-information.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
+import { IsLoadingPipe } from './pipes/is-loading.pipe';
+import { IsErrorPipe } from './pipes/is-error.pipe';
+import { FunctionPipe } from './pipes/function.pipe';
+import { ArrayPipe } from './pipes/array.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,10 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
     SpacerDirective,
     PatientInformationComponent,
     ErrorMessageComponent,
+    IsLoadingPipe,
+    IsErrorPipe,
+    FunctionPipe,
+    ArrayPipe,
   ],
   imports: [
     CommonModule,
@@ -47,6 +55,10 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
     CompactDirective,
     SpacerDirective,
     ErrorMessageComponent,
+    IsLoadingPipe,
+    IsErrorPipe,
+    FunctionPipe,
+    ArrayPipe,
   ],
   providers: [
     CompactDirective,
